@@ -118,11 +118,11 @@ class CompactTweetView extends StatelessWidget {
     return Container(
       color: backgroundColor,
       child: Padding(
-        padding: const EdgeInsets.all(0.0),
+        padding: EdgeInsets.zero,
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 24),
+              padding: const EdgeInsets.only(left: 24),
               child: RetweetInformation(
                 _tweetVM,
                 retweetInformationStyle:
@@ -139,13 +139,11 @@ class CompactTweetView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Container(
-                          child: Byline(
-                            _tweetVM,
-                            ViewMode.compact,
-                            userNameStyle: userNameStyle,
-                            userScreenNameStyle: userScreenNameStyle,
-                          ),
+                        Byline(
+                          _tweetVM,
+                          ViewMode.compact,
+                          userNameStyle: userNameStyle,
+                          userScreenNameStyle: userScreenNameStyle,
                         ),
                         MediaContainer(
                           _tweetVM,
@@ -163,21 +161,24 @@ class CompactTweetView extends StatelessWidget {
                             _tweetVM,
                             textStyle: textStyle,
                             clickableTextStyle: clickableTextStyle,
-                            padding: const EdgeInsets.only(),
+                            padding: EdgeInsets.zero,
                           ),
                         ),
-                        if (_tweetVM.quotedTweet != null) Padding(
-                                padding: EdgeInsets.only(top: 8.0),
-                                child: QuoteTweetView.fromTweet(
-                                  _tweetVM.quotedTweet!,
-                                  textStyle: quoteTextStyle,
-                                  clickableTextStyle: quoteClickableTextStyle,
-                                  userNameStyle: quoteUserNameStyle,
-                                  userScreenNameStyle: quoteUserScreenNameStyle,
-                                  backgroundColor: quoteBackgroundColor,
-                                  borderColor: quoteBorderColor,
-                                ),
-                              ) else Container(),
+                        if (_tweetVM.quotedTweet != null)
+                          Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: QuoteTweetView.fromTweet(
+                              _tweetVM.quotedTweet!,
+                              textStyle: quoteTextStyle,
+                              clickableTextStyle: quoteClickableTextStyle,
+                              userNameStyle: quoteUserNameStyle,
+                              userScreenNameStyle: quoteUserScreenNameStyle,
+                              backgroundColor: quoteBackgroundColor,
+                              borderColor: quoteBorderColor,
+                            ),
+                          )
+                        else
+                          Container(),
                       ],
                     ),
                   ),
