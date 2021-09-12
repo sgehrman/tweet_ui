@@ -188,7 +188,7 @@ class VideoInfo {
           ? []
           : List<Variant>.from(
               List<Map<String, dynamic>>.from(json['variants'] as List)
-                  .map((x) => Variant.fromJson(x)) as List,
+                  .map((x) => Variant.fromJson(x)),
             ),
     );
   }
