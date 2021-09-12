@@ -93,22 +93,28 @@ class Tweet {
         quotedStatus: json['quoted_status'] == null
             ? null
             : Tweet.fromJson(
-                Map<String, dynamic>.from(json['quoted_status'] as Map)),
+                Map<String, dynamic>.from(json['quoted_status'] as Map),
+              ),
         retweetedStatus: json['retweeted_status'] == null
             ? null
             : Tweet.fromJson(
-                Map<String, dynamic>.from(json['retweeted_status'] as Map)),
+                Map<String, dynamic>.from(json['retweeted_status'] as Map),
+              ),
         text: json['text'] as String? ??
             (json['full_text'] == null ? '' : json['full_text'] as String),
         entities: json['entities'] == null
             ? const TweetEntities.empty()
             : TweetEntities.fromJson(
-                Map<String, dynamic>.from(json['entities'] as Map)),
+                Map<String, dynamic>.from(json['entities'] as Map),
+              ),
         extendedEntities: json['extended_entities'] == null
             ? const TweetEntities.empty()
             : TweetEntities.fromJson(
-                Map<String, dynamic>.from(json['extended_entities'] as Map)),
-        user: User.fromJson(Map<String, dynamic>.from(json['user'] as Map)),
+                Map<String, dynamic>.from(json['extended_entities'] as Map),
+              ),
+        user: User.fromJson(
+          Map<String, dynamic>.from(json['user'] as Map),
+        ),
         isQuoteStatus: json['is_quote_status'] as bool? ?? false,
         favorited: json['favorited'] as bool?,
         favoriteCount: json['favorite_count'] == null

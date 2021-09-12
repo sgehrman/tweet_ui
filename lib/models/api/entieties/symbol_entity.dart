@@ -23,7 +23,7 @@ class SymbolEntity extends Entity {
       text: json['text'] as String,
       indices: json['indices'] == null
           ? []
-          : List<int>.from(json['indices'].map((x) => x) as List),
+          : List<int>.from(json['indices'] as List),
     );
   }
 }

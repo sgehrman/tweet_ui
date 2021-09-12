@@ -35,10 +35,11 @@ class MediaEntity extends UrlEntity {
     this.videoInfo,
     required List<int> indices,
   }) : super(
-            url: url,
-            displayUrl: displayUrl,
-            expandedUrl: expandedUrl,
-            indices: indices);
+          url: url,
+          displayUrl: displayUrl,
+          expandedUrl: expandedUrl,
+          indices: indices,
+        );
 
   factory MediaEntity.fromRawJson(String str) {
     return MediaEntity.fromJson(
@@ -61,10 +62,11 @@ class MediaEntity extends UrlEntity {
       videoInfo: json['video_info'] == null
           ? null
           : VideoInfo.fromJson(
-              Map<String, dynamic>.from(json['video_info'] as Map)),
+              Map<String, dynamic>.from(json['video_info'] as Map),
+            ),
       indices: json['indices'] == null
           ? []
-          : List<int>.from(json['indices'].map((x) => x) as List),
+          : List<int>.from(json['indices'] as List),
     );
   }
 }
@@ -180,13 +182,14 @@ class VideoInfo {
     return VideoInfo(
       aspectRatio: json['aspect_ratio'] == null
           ? []
-          : List<int>.from(json['aspect_ratio'].map((x) => x) as List),
+          : List<int>.from(json['aspect_ratio'] as List),
       durationMillis: json['duration_millis'] as int?,
       variants: json['variants'] == null
           ? []
           : List<Variant>.from(
               List<Map<String, dynamic>>.from(json['variants'] as List)
-                  .map((x) => Variant.fromJson(x)) as List),
+                  .map((x) => Variant.fromJson(x)) as List,
+            ),
     );
   }
 }

@@ -12,12 +12,13 @@ class _TweetPageBugGH50State extends State<TweetPageBugGH50> {
   @override
   Widget build(BuildContext context) {
     final user = User(
-        id: 121,
-        name: 'Marshal Sarit',
-        screenName: 'King Prayed',
-        verified: true,
-        profileImageUrlHttps:
-            'https://d1ab2zufs7bob.cloudfront.net/media/avatars/avatar_GlDoZ0w.jpg');
+      id: 121,
+      name: 'Marshal Sarit',
+      screenName: 'King Prayed',
+      verified: true,
+      profileImageUrlHttps:
+          'https://d1ab2zufs7bob.cloudfront.net/media/avatars/avatar_GlDoZ0w.jpg',
+    );
     final tweet = Tweet(
       createdAt: 'Wed Oct 10 20:19:24 +0000 2018',
       id: 1050118621198921728,

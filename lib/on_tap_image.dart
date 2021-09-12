@@ -6,4 +6,7 @@
 /// photoIndex - index of the currently opened photo
 /// hashcode - used only for Hero purposes
 typedef OnTapImage = void Function(
-    List<String> allPhotos, int photoIndex, String hashcode);
+  List<String> allPhotos,
+  int photoIndex,
+  String hashcode,
+);

@@ -148,7 +148,9 @@ class EmbeddedTweetView extends StatelessWidget {
                           : defaultEmbeddedTextStyle,
                       clickableTextStyle: defaultEmbeddedClickableTextStyle,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 15.0),
+                        horizontal: 8.0,
+                        vertical: 15.0,
+                      ),
                     ),
                   ),
                   if (_tweetVM.quotedTweet != null)
@@ -157,7 +159,8 @@ class EmbeddedTweetView extends StatelessWidget {
                       child: QuoteTweetViewEmbed.fromTweet(
                         _tweetVM.quotedTweet!,
                         textStyle: TextStyle(
-                            color: darkMode ? Colors.white : Colors.black),
+                          color: darkMode ? Colors.white : Colors.black,
+                        ),
                         clickableTextStyle: defaultQuoteClickableTextStyle,
                         userNameStyle: darkMode
                             ? defaultEmbeddedDarkQuoteUserNameStyle
@@ -194,19 +197,23 @@ class EmbeddedTweetView extends StatelessWidget {
                   size: 18,
                 ),
                 Container(
-                    margin: const EdgeInsets.only(left: 6),
-                    child: Text(_tweetVM.favoriteCount.toString(),
-                        style: TextStyle(
-                            color: darkMode
-                                ? Colors.grey[400]
-                                : Colors.grey[600]))),
+                  margin: const EdgeInsets.only(left: 6),
+                  child: Text(
+                    _tweetVM.favoriteCount.toString(),
+                    style: TextStyle(
+                      color: darkMode ? Colors.grey[400] : Colors.grey[600],
+                    ),
+                  ),
+                ),
                 Container(
-                    margin: const EdgeInsets.only(left: 16),
-                    child: Text(_tweetVM.createdAt,
-                        style: TextStyle(
-                            color: darkMode
-                                ? Colors.grey[400]
-                                : Colors.grey[600])))
+                  margin: const EdgeInsets.only(left: 16),
+                  child: Text(
+                    _tweetVM.createdAt,
+                    style: TextStyle(
+                      color: darkMode ? Colors.grey[400] : Colors.grey[600],
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -233,9 +240,9 @@ class EmbeddedTweetView extends StatelessWidget {
                       child: Text(
                         "${_tweetVM.userName}'s other tweets",
                         style: TextStyle(
-                            color:
-                                darkMode ? Colors.blue[100] : Colors.blue[800],
-                            fontWeight: FontWeight.w400),
+                          color: darkMode ? Colors.blue[100] : Colors.blue[800],
+                          fontWeight: FontWeight.w400,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.fade,
                         softWrap: false,

@@ -52,10 +52,12 @@ class TweetText extends StatelessWidget {
     }
 
     if (tweetVM.allEntities.isEmpty) {
-      spans.add(TextSpan(
-        text: unescape.convert(tweetVM.text),
-        style: textStyle,
-      ));
+      spans.add(
+        TextSpan(
+          text: unescape.convert(tweetVM.text),
+          style: textStyle,
+        ),
+      );
     } else {
       tweetVM.allEntities.asMap().forEach((index, entity) {
         // look for the next match
@@ -68,60 +70,84 @@ class TweetText extends StatelessWidget {
 
         // add any plain text before the next entity
         if (startIndex > boundary!) {
-          spans.add(TextSpan(
-            text: unescape.convert(String.fromCharCodes(tweetVM.textRunes,
-                boundary!, min(startIndex, tweetVM.endDisplayText!))),
-            style: textStyle,
-          ));
+          spans.add(
+            TextSpan(
+              text: unescape.convert(
+                String.fromCharCodes(
+                  tweetVM.textRunes,
+                  boundary!,
+                  min(startIndex, tweetVM.endDisplayText!),
+                ),
+              ),
+              style: textStyle,
+            ),
+          );
         }
 
         if (entity.runtimeType == UrlEntity) {
           final UrlEntity urlEntity = entity as UrlEntity;
           final spanText = unescape.convert(urlEntity.displayUrl);
-          spans.add(TextSpan(
-            text: spanText,
-            style: clickableTextStyle,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () async {
-                await openUrl(urlEntity.url);
-              },
-          ));
+          spans.add(
+            TextSpan(
+              text: spanText,
+              style: clickableTextStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  await openUrl(urlEntity.url);
+                },
+            ),
+          );
         } else {
           final spanText = unescape.convert(
-            String.fromCharCodes(tweetVM.textRunes, startIndex,
-                min(entity.end, tweetVM.endDisplayText!)),
+            String.fromCharCodes(
+              tweetVM.textRunes,
+              startIndex,
+              min(entity.end, tweetVM.endDisplayText!),
+            ),
           );
-          spans.add(TextSpan(
-            text: spanText,
-            style: clickableTextStyle,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () async {
-                if (entity.runtimeType == MentionEntity) {
-                  final MentionEntity mentionEntity = entity as MentionEntity;
-                  await openUrl(
-                      'https://twitter.com/${mentionEntity.screenName}');
-                } else if (entity.runtimeType == SymbolEntity) {
-                  final SymbolEntity symbolEntity = entity as SymbolEntity;
-                  await openUrl(
-                      'https://twitter.com/search?q=${symbolEntity.text}');
-                } else if (entity.runtimeType == HashtagEntity) {
-                  final HashtagEntity hashtagEntity = entity as HashtagEntity;
-                  await openUrl(
-                      'https://twitter.com/hashtag/${hashtagEntity.text}');
-                }
-              },
-          ));
+          spans.add(
+            TextSpan(
+              text: spanText,
+              style: clickableTextStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  if (entity.runtimeType == MentionEntity) {
+                    final MentionEntity mentionEntity = entity as MentionEntity;
+                    await openUrl(
+                      'https://twitter.com/${mentionEntity.screenName}',
+                    );
+                  } else if (entity.runtimeType == SymbolEntity) {
+                    final SymbolEntity symbolEntity = entity as SymbolEntity;
+                    await openUrl(
+                      'https://twitter.com/search?q=${symbolEntity.text}',
+                    );
+                  } else if (entity.runtimeType == HashtagEntity) {
+                    final HashtagEntity hashtagEntity = entity as HashtagEntity;
+                    await openUrl(
+                      'https://twitter.com/hashtag/${hashtagEntity.text}',
+                    );
+                  }
+                },
+            ),
+          );
         }
 
         // update the boundary to know from where to start the next iteration
         boundary = entity.end;
       });
 
-      spans.add(TextSpan(
-        text: unescape.convert(String.fromCharCodes(tweetVM.textRunes,
-            boundary!, min(tweetVM.textRunes.length, tweetVM.endDisplayText!))),
-        style: textStyle,
-      ));
+      spans.add(
+        TextSpan(
+          text: unescape.convert(
+            String.fromCharCodes(
+              tweetVM.textRunes,
+              boundary!,
+              min(tweetVM.textRunes.length, tweetVM.endDisplayText!),
+            ),
+          ),
+          style: textStyle,
+        ),
+      );
     }
 
     return spans;

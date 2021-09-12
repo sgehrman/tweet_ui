@@ -39,45 +39,67 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
                       TextStyle(color: darkMode ? Colors.white : Colors.black),
                 ),
                 trailing: Switch(
-                    value: darkMode,
-                    onChanged: (value) {
-                      setState(() {
-                        darkMode = value;
-                      });
-                    }),
+                  value: darkMode,
+                  onChanged: (value) {
+                    setState(() {
+                      darkMode = value;
+                    });
+                  },
+                ),
               ),
             ),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_1_photo.json',
-                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_1_photo.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_2_photos.json',
-                darkMode: darkMode),
+              'assets/tweet_examples/tweet_1_photo.json',
+              darkMode: darkMode,
+            ),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_2_photos.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_3_photos.json',
-                darkMode: darkMode),
+              'assets/tweet_examples/tweet_quote_1_photo.json',
+              darkMode: darkMode,
+            ),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_3_photos.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_4_photos.json',
-                darkMode: darkMode),
+              'assets/tweet_examples/tweet_2_photos.json',
+              darkMode: darkMode,
+            ),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_4_photos.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_video.json',
-                darkMode: darkMode),
+              'assets/tweet_examples/tweet_quote_2_photos.json',
+              darkMode: darkMode,
+            ),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_video.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_gif.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_quote_gif.json',
-                darkMode: darkMode),
-            buildEmbeddedTweetView('assets/tweet_examples/tweet_retweet.json',
-                darkMode: darkMode),
+              'assets/tweet_examples/tweet_3_photos.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_quote_3_photos.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_4_photos.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_quote_4_photos.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_video.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_quote_video.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_gif.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_quote_gif.json',
+              darkMode: darkMode,
+            ),
+            buildEmbeddedTweetView(
+              'assets/tweet_examples/tweet_retweet.json',
+              darkMode: darkMode,
+            ),
           ],
         ),
       ),

@@ -83,8 +83,10 @@ class _TweetVideoState extends State<TweetVideo>
         : widget.tweetVM.getDisplayTweet().videoUrls.values.first;
     controller = BetterPlayerController(
       betterPlayerConfiguration,
-      betterPlayerDataSource: BetterPlayerDataSource.network(videoUrl,
-          qualities: widget.tweetVM.getDisplayTweet().videoUrls),
+      betterPlayerDataSource: BetterPlayerDataSource.network(
+        videoUrl,
+        qualities: widget.tweetVM.getDisplayTweet().videoUrls,
+      ),
     );
     controller.setVolume(widget.initialVolume!);
   }

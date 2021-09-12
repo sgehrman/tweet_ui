@@ -78,8 +78,10 @@ class TweetVM {
       allPhotos: _allPhotos(_originalTweetOrRetweet(tweet)),
       userName: _userName(tweet),
       userScreenName: _userScreenName(tweet),
-      quotedTweet: _quotedTweet(_originalTweetOrRetweet(tweet).quotedStatus,
-          createdDateDisplayFormat),
+      quotedTweet: _quotedTweet(
+        _originalTweetOrRetweet(tweet).quotedStatus,
+        createdDateDisplayFormat,
+      ),
       retweetedTweet:
           _retweetedTweet(tweet.retweetedStatus, createdDateDisplayFormat),
       userVerified: _userVerified(tweet),
@@ -229,7 +231,9 @@ class TweetVM {
   }
 
   static TweetVM? _quotedTweet(
-      Tweet? tweet, DateFormat? createdDateDisplayFormat) {
+    Tweet? tweet,
+    DateFormat? createdDateDisplayFormat,
+  ) {
     if (tweet != null) {
       return TweetVM.fromApiModel(tweet, createdDateDisplayFormat);
     } else {
@@ -238,7 +242,9 @@ class TweetVM {
   }
 
   static TweetVM? _retweetedTweet(
-      Tweet? tweet, DateFormat? createdDateDisplayFormat) {
+    Tweet? tweet,
+    DateFormat? createdDateDisplayFormat,
+  ) {
     if (tweet != null) {
       return TweetVM.fromApiModel(tweet, createdDateDisplayFormat);
     } else {
@@ -261,7 +267,8 @@ class TweetVM {
         .where((variant) => variant.contentType == 'video/mp4')
         .toList();
     listOfVideoVariants?.sort(
-        (variantA, variantB) => variantA.bitrate.compareTo(variantB.bitrate));
+      (variantA, variantB) => variantA.bitrate.compareTo(variantB.bitrate),
+    );
     if (listOfVideoVariants != null && listOfVideoVariants.isNotEmpty) {
       return {
         for (var variant in listOfVideoVariants)

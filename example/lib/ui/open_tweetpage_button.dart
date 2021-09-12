@@ -8,9 +8,12 @@ class OpenTweetPageButton extends StatelessWidget {
   final String tweetPath;
   final String? quoteTweetPath;
 
-  const OpenTweetPageButton(
-      {Key? key, required this.title, required this.tweetPath, this.quoteTweetPath})
-      : super(key: key);
+  const OpenTweetPageButton({
+    Key? key,
+    required this.title,
+    required this.tweetPath,
+    this.quoteTweetPath,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

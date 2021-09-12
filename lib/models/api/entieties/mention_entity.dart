@@ -24,7 +24,7 @@ class MentionEntity extends Entity {
           json['screen_name'] == null ? '' : json['screen_name'] as String,
       indices: json['indices'] == null
           ? []
-          : List<int>.from(json['indices'].map((x) => x) as List),
+          : List<int>.from(json['indices'] as List),
     );
   }
 }

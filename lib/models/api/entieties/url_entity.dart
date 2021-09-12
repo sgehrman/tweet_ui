@@ -33,6 +33,6 @@ class UrlEntity extends Entity {
         displayUrl: json['display_url'] as String,
         indices: json['indices'] == null
             ? []
-            : List<int>.from(json['indices'].map((x) => x) as List),
+            : List<int>.from(json['indices'] as List),
       );
 }

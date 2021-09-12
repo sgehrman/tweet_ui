@@ -40,20 +40,23 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
   void _onTapDown() {
     _controller.forward().then((_) {
       _controller.reverse().then((_) {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (_) {
-            return WillPopScope(
-              child: TweetVideo(
-                widget.tweetVM!.getDisplayTweet(),
-                autoPlay: true,
-                enableFullscreen: false,
-              ),
-              onWillPop: () {
-                return Future.value(true);
-              },
-            );
-          },
-        ));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) {
+              return WillPopScope(
+                child: TweetVideo(
+                  widget.tweetVM!.getDisplayTweet(),
+                  autoPlay: true,
+                  enableFullscreen: false,
+                ),
+                onWillPop: () {
+                  return Future.value(true);
+                },
+              );
+            },
+          ),
+        );
       });
     });
   }

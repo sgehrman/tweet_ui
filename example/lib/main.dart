@@ -62,9 +62,11 @@ class TweetUiExample extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const EmbeddedTweetPage()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const EmbeddedTweetPage(),
+            ),
+          );
         },
       ),
     );
@@ -80,7 +82,11 @@ class TweetUiExample extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => BugPage()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => BugPage(),
+            ),
+          );
         },
       ),
     );

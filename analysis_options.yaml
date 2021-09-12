@@ -16,7 +16,7 @@ linter:
     prefer_foreach: true
     # sort_constructors_first: true
     unawaited_futures: true
-    # avoid_dynamic_calls: true
+    avoid_dynamic_calls: true
 
     # turn off
     avoid_print: false
@@ -32,7 +32,7 @@ linter:
     # turn off if annoying
     # prefer_final_locals: false
     # prefer_const_constructors: false
-    require_trailing_commas: false
+    # require_trailing_commas: false
     prefer_interpolation_to_compose_strings: false
     prefer_if_elements_to_conditional_expressions: false
     prefer_if_null_operators: false

@@ -61,7 +61,8 @@ class _MediaContainerState extends State<MediaContainer>
           children: <Widget>[
             Image(
               image: CachedNetworkImageProvider(
-                  widget.tweetVM.getDisplayTweet().videoPlaceholderUrl!),
+                widget.tweetVM.getDisplayTweet().videoPlaceholderUrl!,
+              ),
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
@@ -99,8 +100,12 @@ class _MediaContainerState extends State<MediaContainer>
         case 1:
           child = AspectRatio(
             aspectRatio: MediaContainer.DEFAULT_ASPECT_RATIO_MEDIA_CONTAINER,
-            child: _buildSinglePhoto(context,
-                widget.tweetVM.getDisplayTweet().allPhotos, 0, hashcode),
+            child: _buildSinglePhoto(
+              context,
+              widget.tweetVM.getDisplayTweet().allPhotos,
+              0,
+              hashcode,
+            ),
           );
           break;
         case 2:
@@ -110,13 +115,21 @@ class _MediaContainerState extends State<MediaContainer>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
-                  child: _buildSinglePhoto(context,
-                      widget.tweetVM.getDisplayTweet().allPhotos, 0, hashcode),
+                  child: _buildSinglePhoto(
+                    context,
+                    widget.tweetVM.getDisplayTweet().allPhotos,
+                    0,
+                    hashcode,
+                  ),
                 ),
                 const VerticalDivider(color: Colors.white, width: 1.0),
                 Expanded(
-                  child: _buildSinglePhoto(context,
-                      widget.tweetVM.getDisplayTweet().allPhotos, 1, hashcode),
+                  child: _buildSinglePhoto(
+                    context,
+                    widget.tweetVM.getDisplayTweet().allPhotos,
+                    1,
+                    hashcode,
+                  ),
                 )
               ],
             ),
@@ -128,8 +141,12 @@ class _MediaContainerState extends State<MediaContainer>
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: _buildSinglePhoto(context,
-                      widget.tweetVM.getDisplayTweet().allPhotos, 0, hashcode),
+                  child: _buildSinglePhoto(
+                    context,
+                    widget.tweetVM.getDisplayTweet().allPhotos,
+                    0,
+                    hashcode,
+                  ),
                 ),
                 const VerticalDivider(color: Colors.white, width: 1.0),
                 Expanded(
@@ -137,18 +154,20 @@ class _MediaContainerState extends State<MediaContainer>
                     children: <Widget>[
                       Expanded(
                         child: _buildSinglePhoto(
-                            context,
-                            widget.tweetVM.getDisplayTweet().allPhotos,
-                            1,
-                            hashcode),
+                          context,
+                          widget.tweetVM.getDisplayTweet().allPhotos,
+                          1,
+                          hashcode,
+                        ),
                       ),
                       const Divider(color: Colors.white, height: 1.0),
                       Expanded(
                         child: _buildSinglePhoto(
-                            context,
-                            widget.tweetVM.getDisplayTweet().allPhotos,
-                            2,
-                            hashcode),
+                          context,
+                          widget.tweetVM.getDisplayTweet().allPhotos,
+                          2,
+                          hashcode,
+                        ),
                       )
                     ],
                   ),
@@ -175,10 +194,11 @@ class _MediaContainerState extends State<MediaContainer>
               ),
               itemBuilder: (BuildContext context, int index) {
                 return _buildSinglePhoto(
-                    context,
-                    widget.tweetVM.getDisplayTweet().allPhotos,
-                    index,
-                    hashcode);
+                  context,
+                  widget.tweetVM.getDisplayTweet().allPhotos,
+                  index,
+                  hashcode,
+                );
               },
             ),
           );
@@ -221,28 +241,37 @@ class _MediaContainerState extends State<MediaContainer>
 
   /// allPhotos - list on URLs that is used to build a gallery view
   /// hashcode - used for the Hero tag. The image URL is not enough - for example, you can still have duplicated tweets on a list.
-  Widget _buildSinglePhoto(BuildContext context, List<String> allPhotos,
-      int photoIndex, String hashcode) {
+  Widget _buildSinglePhoto(
+    BuildContext context,
+    List<String> allPhotos,
+    int photoIndex,
+    String hashcode,
+  ) {
     final List<PhotoViewGalleryPageOptions> galleryPageOptions = allPhotos
-        .map((photoUrl) => PhotoViewGalleryPageOptions(
-              // TODO add option to choose image size (Twitter supports ":medium" ":large" at the end of photoUrl.
-              imageProvider: CachedNetworkImageProvider(photoUrl),
-              heroAttributes: PhotoViewHeroAttributes(
-                tag: photoUrl + hashcode,
-              ),
-            ))
+        .map(
+          (photoUrl) => PhotoViewGalleryPageOptions(
+            // TODO add option to choose image size (Twitter supports ":medium" ":large" at the end of photoUrl.
+            imageProvider: CachedNetworkImageProvider(photoUrl),
+            heroAttributes: PhotoViewHeroAttributes(
+              tag: photoUrl + hashcode,
+            ),
+          ),
+        )
         .toList(growable: false);
     return GestureDetector(
       onTap: widget.onTapImage == null
           ? () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (_) {
-                  return PhotoViewGallery(
-                    pageOptions: galleryPageOptions,
-                    pageController: PageController(initialPage: photoIndex),
-                  );
-                },
-              ));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return PhotoViewGallery(
+                      pageOptions: galleryPageOptions,
+                      pageController: PageController(initialPage: photoIndex),
+                    );
+                  },
+                ),
+              );
             }
           : () => widget.onTapImage!(allPhotos, photoIndex, hashcode),
       child: Hero(
