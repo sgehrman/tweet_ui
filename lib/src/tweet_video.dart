@@ -116,19 +116,22 @@ class _TweetVideoState extends State<TweetVideo>
       return _vpController.value.isInitialized
           ? AspectRatio(
               aspectRatio: _vpController.value.aspectRatio,
-              child: Stack(
-                children: [
-                  VideoPlayer(_vpController),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _vpController.value.isPlaying
-                            ? _vpController.pause()
-                            : _vpController.play();
-                      });
-                    },
-                  ),
-                ],
+              // Flutter complained there was no material on InkWell?
+              child: Material(
+                child: Stack(
+                  children: [
+                    VideoPlayer(_vpController),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _vpController.value.isPlaying
+                              ? _vpController.pause()
+                              : _vpController.play();
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             )
           : Container();
