@@ -38,10 +38,20 @@ abstract class Entity {
   });
 
   int get start {
+    if (indices.length < 2) {
+      print('start: indicies empty?, $runtimeType');
+      return 0;
+    }
+
     return indices[START_INDEX];
   }
 
   int get end {
+    if (indices.length < 2) {
+      print('end: indicies empty?, $runtimeType');
+      return 0;
+    }
+
     return indices[END_INDEX];
   }
 }

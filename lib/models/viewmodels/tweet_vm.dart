@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:intl/intl.dart';
 import 'package:tweet_ui/models/api/entieties/entity.dart';
 import 'package:tweet_ui/models/api/entieties/media_entity.dart';
@@ -70,11 +71,11 @@ class TweetVM {
       allEntities: _allEntities(_originalTweetOrRetweet(tweet)),
       hasPhoto: _hasPhoto(_originalTweetOrRetweet(tweet)),
       hasGif: _hasGif(_originalTweetOrRetweet(tweet)),
-      tweetLink: _tweetLink(tweet)!,
-      userLink: _userLink(tweet)!,
+      tweetLink: _tweetLink(tweet) ?? '',
+      userLink: _userLink(tweet) ?? '',
       text: _text(_originalTweetOrRetweet(tweet)),
       textRunes: _runes(_originalTweetOrRetweet(tweet)),
-      profileUrl: _profileURL(tweet)!,
+      profileUrl: _profileURL(tweet) ?? '',
       allPhotos: _allPhotos(_originalTweetOrRetweet(tweet)),
       userName: _userName(tweet),
       userScreenName: _userScreenName(tweet),
@@ -103,7 +104,16 @@ class TweetVM {
     // final DateFormat twitterFormat =
     //     DateFormat("EEE MMM dd HH:mm:ss '+0000' yyyy", 'en_US');
 
-    final dateTime = DateTime.parse(tweet.createdAt).toLocal();
+    DateTime dateTime;
+
+    try {
+      dateTime = DateTime.parse(tweet.createdAt).toLocal();
+    } catch (e) {
+      dateTime = DateTime.now();
+      print('Date.parse faild: ${tweet.createdAt}');
+      print(e);
+    }
+
     return (displayFormat ?? DateFormat('HH:mm • MM.dd.yyyy', 'en_US'))
         .format(dateTime);
   }
@@ -127,7 +137,7 @@ class TweetVM {
 
   static MediaEntity? _videoEntity(Tweet tweet) {
     try {
-      return _allMediaEntities(tweet).firstWhere(
+      return _allMediaEntities(tweet).firstWhereOrNull(
         (MediaEntity mediaEntity) => _isVideoType(mediaEntity),
       );
     } catch (e) {
