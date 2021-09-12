@@ -39,7 +39,7 @@ abstract class Entity {
 
   int get start {
     if (indices.length < 2) {
-      print('start: indicies empty?, $runtimeType');
+      // print('start: indicies empty?, $runtimeType');
       return 0;
     }
 
@@ -48,7 +48,7 @@ abstract class Entity {
 
   int get end {
     if (indices.length < 2) {
-      print('end: indicies empty?, $runtimeType');
+      // print('end: indicies empty?, $runtimeType');
       return 0;
     }
 
