@@ -92,28 +92,30 @@ class Tweet {
         idStr: json['id_str'] == null ? '' : json['id_str'] as String,
         quotedStatus: json['quoted_status'] == null
             ? null
-            : Tweet.fromJson(json['quoted_status']),
+            : Tweet.fromJson(
+                Map<String, dynamic>.from(json['quoted_status'] as Map)),
         retweetedStatus: json['retweeted_status'] == null
             ? null
-            : Tweet.fromJson(json['retweeted_status']),
+            : Tweet.fromJson(
+                Map<String, dynamic>.from(json['retweeted_status'] as Map)),
         text: json['text'] as String? ??
             (json['full_text'] == null ? '' : json['full_text'] as String),
         entities: json['entities'] == null
             ? const TweetEntities.empty()
-            : TweetEntities.fromJson(json['entities']),
+            : TweetEntities.fromJson(
+                Map<String, dynamic>.from(json['entities'] as Map)),
         extendedEntities: json['extended_entities'] == null
             ? const TweetEntities.empty()
-            : TweetEntities.fromJson(json['extended_entities']),
-        user: User.fromJson(json['user']),
-        isQuoteStatus: json['is_quote_status'] == null
-            ? false
-            : json['is_quote_status'] as bool,
+            : TweetEntities.fromJson(
+                Map<String, dynamic>.from(json['extended_entities'] as Map)),
+        user: User.fromJson(Map<String, dynamic>.from(json['user'] as Map)),
+        isQuoteStatus: json['is_quote_status'] as bool? ?? false,
         favorited: json['favorited'] as bool?,
         favoriteCount: json['favorite_count'] == null
             ? null
             : json['favorite_count'] as int,
         displayTextRange: json['display_text_range'] == null
             ? null
-            : (json['display_text_range']).cast<int>(),
+            : List<int>.from(json['display_text_range'] as List),
       );
 }

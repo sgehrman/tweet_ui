@@ -47,32 +47,37 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
                     }),
               ),
             ),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_1_photo.json',
+                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_1_photo.json', darkMode),
+                'assets/tweet_examples/tweet_quote_1_photo.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_2_photos.json',
+                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_1_photo.json', darkMode),
+                'assets/tweet_examples/tweet_quote_2_photos.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_3_photos.json',
+                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_2_photos.json', darkMode),
+                'assets/tweet_examples/tweet_quote_3_photos.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_4_photos.json',
+                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_2_photos.json', darkMode),
+                'assets/tweet_examples/tweet_quote_4_photos.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_video.json',
+                darkMode: darkMode),
             buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_3_photos.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_3_photos.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_4_photos.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_4_photos.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_video.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_video.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_gif.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_quote_gif.json', darkMode),
-            buildEmbeddedTweetView(
-                'assets/tweet_examples/tweet_retweet.json', darkMode),
+                'assets/tweet_examples/tweet_quote_video.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_gif.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_quote_gif.json',
+                darkMode: darkMode),
+            buildEmbeddedTweetView('assets/tweet_examples/tweet_retweet.json',
+                darkMode: darkMode),
           ],
         ),
       ),
@@ -91,7 +96,7 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
   }
 
   /// Builds a TweetView from a JSON file
-  Widget buildEmbeddedTweetView(String jsonFile, bool darkMode) {
+  Widget buildEmbeddedTweetView(String jsonFile, {required bool darkMode}) {
     return FutureBuilder<String>(
       future: rootBundle.loadString(jsonFile),
       builder: (context, snapshot) {

@@ -49,23 +49,39 @@ class TweetEntities {
       hashtags: json['hashtags'] == null
           ? []
           : List<HashtagEntity>.from(
-              json['hashtags'].map((x) => HashtagEntity.fromJson(x))),
+              List<Map<String, dynamic>>.from(json['hashtags'] as List).map(
+                (x) => HashtagEntity.fromJson(x),
+              ),
+            ),
       symbols: json['symbols'] == null
           ? []
           : List<SymbolEntity>.from(
-              json['symbols'].map((x) => SymbolEntity.fromJson(x))),
+              List<Map<String, dynamic>>.from(json['symbols'] as List).map(
+                (x) => SymbolEntity.fromJson(x),
+              ),
+            ),
       userMentions: json['user_mentions'] == null
           ? []
           : List<MentionEntity>.from(
-              json['user_mentions'].map((x) => MentionEntity.fromJson(x))),
+              List<Map<String, dynamic>>.from(json['user_mentions'] as List)
+                  .map(
+                (x) => MentionEntity.fromJson(x),
+              ),
+            ),
       urls: json['urls'] == null
           ? []
           : List<UrlEntity>.from(
-              json['urls'].map((x) => UrlEntity.fromJson(x))),
+              List<Map<String, dynamic>>.from(json['urls'] as List).map(
+                (x) => UrlEntity.fromJson(x),
+              ),
+            ),
       media: json['media'] == null
           ? []
           : List<MediaEntity>.from(
-              json['media'].map((x) => MediaEntity.fromJson(x))),
+              List<Map<String, dynamic>>.from(json['media'] as List).map(
+                (x) => MediaEntity.fromJson(x),
+              ),
+            ),
     );
   }
 }

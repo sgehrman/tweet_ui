@@ -20,10 +20,10 @@ class SymbolEntity extends Entity {
 
   factory SymbolEntity.fromJson(Map<String, dynamic> json) {
     return SymbolEntity(
-      text: json['text'],
+      text: json['text'] as String,
       indices: json['indices'] == null
-          ? null
-          : List<int>.from(json['indices'].map((x) => x)),
+          ? []
+          : List<int>.from(json['indices'].map((x) => x) as List),
     );
   }
 }
