@@ -27,11 +27,12 @@ class UrlEntity extends Entity {
   }
 
   factory UrlEntity.fromJson(Map<String, dynamic> json) => UrlEntity(
-        url: json['url'],
-        expandedUrl: json['expanded_url'] == null ? null : json['expanded_url'],
-        displayUrl: json['display_url'],
+        url: json['url'] as String,
+        expandedUrl:
+            json['expanded_url'] == null ? '' : json['expanded_url'] as String,
+        displayUrl: json['display_url'] as String,
         indices: json['indices'] == null
-            ? null
-            : List<int>.from(json['indices'].map((x) => x)),
+            ? []
+            : List<int>.from(json['indices'].map((x) => x) as List),
       );
 }

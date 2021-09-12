@@ -48,19 +48,20 @@ class MediaEntity extends UrlEntity {
 
   factory MediaEntity.fromJson(Map<String, dynamic> json) {
     return MediaEntity(
-      id: json['id'] == null ? null : json['id'].toDouble(),
-      mediaUrlHttps: json['media_url_https'],
-      url: json['url'] == null ? null : json['url'],
-      displayUrl: json['display_url'] == null ? null : json['display_url'],
-      expandedUrl: json['expanded_url'],
-      type: json['type'] == null ? null : json['type'],
+      id: json['id'] == null ? 0 : json['id'] as double,
+      mediaUrlHttps: json['media_url_https'] as String,
+      url: json['url'] == null ? '' : json['url'] as String,
+      displayUrl:
+          json['display_url'] == null ? '' : json['display_url'] as String,
+      expandedUrl: json['expanded_url'] as String,
+      type: json['type'] == null ? '' : json['type'] as String,
       sizes: json['sizes'] == null ? null : Sizes.fromJson(json['sizes']),
       videoInfo: json['video_info'] == null
           ? null
           : VideoInfo.fromJson(json['video_info']),
       indices: json['indices'] == null
-          ? null
-          : List<int>.from(json['indices'].map((x) => x)),
+          ? []
+          : List<int>.from(json['indices'].map((x) => x) as List),
     );
   }
 }
@@ -91,14 +92,20 @@ class Sizes {
     this.medium,
   });
 
-  factory Sizes.fromRawJson(String str) => Sizes.fromJson(json.decode(str));
+  factory Sizes.fromRawJson(String str) {
+    return Sizes.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory Sizes.fromJson(Map<String, dynamic> json) => Sizes(
-        thumb: json['thumb'] == null ? null : Size.fromJson(json['thumb']),
-        small: json['small'] == null ? null : Size.fromJson(json['small']),
-        large: json['large'] == null ? null : Size.fromJson(json['large']),
-        medium: json['medium'] == null ? null : Size.fromJson(json['medium']),
-      );
+  factory Sizes.fromJson(Map<String, dynamic> json) {
+    return Sizes(
+      thumb: json['thumb'] == null ? null : Size.fromJson(json['thumb']),
+      small: json['small'] == null ? null : Size.fromJson(json['small']),
+      large: json['large'] == null ? null : Size.fromJson(json['large']),
+      medium: json['medium'] == null ? null : Size.fromJson(json['medium']),
+    );
+  }
 }
 
 class Size {
@@ -119,13 +126,19 @@ class Size {
     required this.resize,
   });
 
-  factory Size.fromRawJson(String str) => Size.fromJson(json.decode(str));
+  factory Size.fromRawJson(String str) {
+    return Size.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory Size.fromJson(Map<String, dynamic> json) => Size(
-        w: json['w'],
-        h: json['h'] == null ? null : json['h'],
-        resize: json['resize'] == null ? null : json['resize'],
-      );
+  factory Size.fromJson(Map<String, dynamic> json) {
+    return Size(
+      w: json['w'],
+      h: json['h'] == null ? null : json['h'],
+      resize: json['resize'] == null ? null : json['resize'],
+    );
+  }
 }
 
 /// Contains information about video.
@@ -146,19 +159,24 @@ class VideoInfo {
     required this.variants,
   });
 
-  factory VideoInfo.fromRawJson(String str) =>
-      VideoInfo.fromJson(json.decode(str));
+  factory VideoInfo.fromRawJson(String str) {
+    return VideoInfo.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory VideoInfo.fromJson(Map<String, dynamic> json) => VideoInfo(
-        aspectRatio: json['aspect_ratio'] == null
-            ? []
-            : List<int>.from(json['aspect_ratio'].map((x) => x)),
-        durationMillis: json['duration_millis'],
-        variants: json['variants'] == null
-            ? []
-            : List<Variant>.from(
-                json['variants'].map((x) => Variant.fromJson(x))),
-      );
+  factory VideoInfo.fromJson(Map<String, dynamic> json) {
+    return VideoInfo(
+      aspectRatio: json['aspect_ratio'] == null
+          ? []
+          : List<int>.from(json['aspect_ratio'].map((x) => x)),
+      durationMillis: json['duration_millis'],
+      variants: json['variants'] == null
+          ? []
+          : List<Variant>.from(
+              json['variants'].map((x) => Variant.fromJson(x))),
+    );
+  }
 }
 
 class Variant {
@@ -172,11 +190,17 @@ class Variant {
     required this.url,
   });
 
-  factory Variant.fromRawJson(String str) => Variant.fromJson(json.decode(str));
+  factory Variant.fromRawJson(String str) {
+    return Variant.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory Variant.fromJson(Map<String, dynamic> json) => Variant(
-        bitrate: json['bitrate'] ?? 0,
-        contentType: json['content_type'] == null ? null : json['content_type'],
-        url: json['url'] == null ? null : json['url'],
-      );
+  factory Variant.fromJson(Map<String, dynamic> json) {
+    return Variant(
+      bitrate: json['bitrate'] ?? 0,
+      contentType: json['content_type'] == null ? null : json['content_type'],
+      url: json['url'] == null ? null : json['url'],
+    );
+  }
 }

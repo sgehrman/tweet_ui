@@ -39,12 +39,13 @@ class User {
   }
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json['id'] == null ? null : json['id'].toDouble(),
-        name: json['name'] == null ? null : json['name'],
-        screenName: json['screen_name'] == null ? null : json['screen_name'],
-        verified: json['verified'],
+        id: json['id'] == null ? 0 : json['id'] as double,
+        name: json['name'] == null ? '' : json['name'] as String,
+        screenName:
+            json['screen_name'] == null ? '' : json['screen_name'] as String,
+        verified: json['verified'] as bool,
         profileImageUrlHttps: json['profile_image_url_https'] == null
             ? null
-            : json['profile_image_url_https'],
+            : json['profile_image_url_https'] as String,
       );
 }

@@ -19,10 +19,10 @@ class HashtagEntity extends Entity {
 
   factory HashtagEntity.fromJson(Map<String, dynamic> json) {
     return HashtagEntity(
-      text: json['text'] == null ? null : json['text'],
+      text: json['text'] == null ? '' : json['text']! as String,
       indices: json['indices'] == null
-          ? null
-          : List<int>.from(json['indices'].map((x) => x)),
+          ? []
+          : List<int>.from(json['indices'].map((x) => x) as List),
     );
   }
 }
