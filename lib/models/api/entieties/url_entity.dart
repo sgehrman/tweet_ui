@@ -17,16 +17,19 @@ class UrlEntity extends Entity {
     required this.url,
     required this.expandedUrl,
     required this.displayUrl,
-    required indices,
+    required List<int> indices,
   }) : super(indices: indices);
 
-  factory UrlEntity.fromRawJson(String str) =>
-      UrlEntity.fromJson(json.decode(str));
+  factory UrlEntity.fromRawJson(String str) {
+    return UrlEntity.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
   factory UrlEntity.fromJson(Map<String, dynamic> json) => UrlEntity(
-        url: json["url"] ?? null,
+        url: json['url'],
         expandedUrl: json['expanded_url'] == null ? null : json['expanded_url'],
-        displayUrl: json["display_url"] ?? null,
+        displayUrl: json['display_url'],
         indices: json['indices'] == null
             ? null
             : List<int>.from(json['indices'].map((x) => x)),

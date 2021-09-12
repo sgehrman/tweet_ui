@@ -166,7 +166,7 @@ class CompactTweetView extends StatelessWidget {
                         ),
                         if (_tweetVM.quotedTweet != null)
                           Padding(
-                            padding: EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: QuoteTweetView.fromTweet(
                               _tweetVM.quotedTweet!,
                               textStyle: quoteTextStyle,

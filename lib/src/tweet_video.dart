@@ -32,7 +32,7 @@ class _TweetVideoState extends State<TweetVideo>
   void initState() {
     super.initState();
     betterPlayerConfiguration = BetterPlayerConfiguration(
-      placeholder: Center(
+      placeholder: const Center(
         child: SizedBox(
           height: 32,
           width: 32,
@@ -40,9 +40,9 @@ class _TweetVideoState extends State<TweetVideo>
         ),
       ),
       errorBuilder: (context, message) {
-        return Text('Error while loading video :-(');
+        return const Text('Error while loading video :-(');
       },
-      aspectRatio: widget.tweetVM.getDisplayTweet().videoAspectRatio!,
+      aspectRatio: widget.tweetVM.getDisplayTweet().videoAspectRatio,
       controlsConfiguration: BetterPlayerControlsConfiguration(
         enablePlaybackSpeed: false,
         enableSkips: false,
@@ -57,7 +57,7 @@ class _TweetVideoState extends State<TweetVideo>
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight
       ],
-      fullScreenAspectRatio: widget.tweetVM.getDisplayTweet().videoAspectRatio!,
+      fullScreenAspectRatio: widget.tweetVM.getDisplayTweet().videoAspectRatio,
       autoPlay: widget.tweetVM.getDisplayTweet().hasGif || widget.autoPlay,
       looping: widget.tweetVM.getDisplayTweet().hasGif,
       overlay: Padding(

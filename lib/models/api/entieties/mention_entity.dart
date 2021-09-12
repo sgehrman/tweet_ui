@@ -9,17 +9,21 @@ class MentionEntity extends Entity {
 
   MentionEntity({
     required this.screenName,
-    required indices,
+    required List<int> indices,
   }) : super(indices: indices);
 
-  factory MentionEntity.fromRawJson(String str) =>
-      MentionEntity.fromJson(json.decode(str));
+  factory MentionEntity.fromRawJson(String str) {
+    return MentionEntity.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory MentionEntity.fromJson(Map<String, dynamic> json) =>
-      MentionEntity(
-        screenName: json['screen_name'] == null ? null : json['screen_name'],
-        indices: json['indices'] == null
-            ? null
-            : List<int>.from(json['indices'].map((x) => x)),
-      );
+  factory MentionEntity.fromJson(Map<String, dynamic> json) {
+    return MentionEntity(
+      screenName: json['screen_name'] == null ? null : json['screen_name'],
+      indices: json['indices'] == null
+          ? null
+          : List<int>.from(json['indices'].map((x) => x)),
+    );
+  }
 }

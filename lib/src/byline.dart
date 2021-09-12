@@ -30,7 +30,6 @@ class Byline extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Flexible(
                   child: Text(
@@ -121,7 +120,7 @@ class Byline extends StatelessWidget {
                 ),
               ),
             ),
-            TwitterLogo(),
+            const TwitterLogo(),
           ],
         );
       default:

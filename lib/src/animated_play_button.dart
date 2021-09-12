@@ -24,7 +24,7 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       upperBound: 0.1,
     )..addListener(() {
         setState(() {});

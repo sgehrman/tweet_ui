@@ -49,11 +49,11 @@ class QuoteTweetViewEmbed extends StatelessWidget {
         openUrl(tweetVM.tweetLink);
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         child: Container(
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
               width: 0.8,
               color: Colors.grey[400]!,

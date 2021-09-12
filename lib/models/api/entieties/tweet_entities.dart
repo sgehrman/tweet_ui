@@ -38,29 +38,34 @@ class TweetEntities {
         urls = const [],
         media = const [];
 
-  factory TweetEntities.fromRawJson(String str) =>
-      TweetEntities.fromJson(json.decode(str));
+  factory TweetEntities.fromRawJson(String str) {
+    return TweetEntities.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory TweetEntities.fromJson(Map<String, dynamic> json) => TweetEntities(
-        hashtags: json['hashtags'] == null
-            ? []
-            : List<HashtagEntity>.from(
-                json['hashtags'].map((x) => HashtagEntity.fromJson(x))),
-        symbols: json['symbols'] == null
-            ? []
-            : List<SymbolEntity>.from(
-                json['symbols'].map((x) => SymbolEntity.fromJson(x))),
-        userMentions: json['user_mentions'] == null
-            ? []
-            : List<MentionEntity>.from(
-                json['user_mentions'].map((x) => MentionEntity.fromJson(x))),
-        urls: json['urls'] == null
-            ? []
-            : List<UrlEntity>.from(
-                json['urls'].map((x) => UrlEntity.fromJson(x))),
-        media: json['media'] == null
-            ? []
-            : List<MediaEntity>.from(
-                json['media'].map((x) => MediaEntity.fromJson(x))),
-      );
+  factory TweetEntities.fromJson(Map<String, dynamic> json) {
+    return TweetEntities(
+      hashtags: json['hashtags'] == null
+          ? []
+          : List<HashtagEntity>.from(
+              json['hashtags'].map((x) => HashtagEntity.fromJson(x))),
+      symbols: json['symbols'] == null
+          ? []
+          : List<SymbolEntity>.from(
+              json['symbols'].map((x) => SymbolEntity.fromJson(x))),
+      userMentions: json['user_mentions'] == null
+          ? []
+          : List<MentionEntity>.from(
+              json['user_mentions'].map((x) => MentionEntity.fromJson(x))),
+      urls: json['urls'] == null
+          ? []
+          : List<UrlEntity>.from(
+              json['urls'].map((x) => UrlEntity.fromJson(x))),
+      media: json['media'] == null
+          ? []
+          : List<MediaEntity>.from(
+              json['media'].map((x) => MediaEntity.fromJson(x))),
+    );
+  }
 }

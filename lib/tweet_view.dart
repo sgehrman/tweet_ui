@@ -170,7 +170,7 @@ class TweetView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.topRight,
                           child: TwitterLogo(),
                         )
@@ -189,20 +189,23 @@ class TweetView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                 ),
-                if (_tweetVM.quotedTweet != null) Padding(
-                        padding:
-                            EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                        child: QuoteTweetView.fromTweet(
-                          _tweetVM.quotedTweet!,
-                          textStyle: quoteTextStyle,
-                          clickableTextStyle: quoteClickableTextStyle,
-                          userNameStyle: quoteUserNameStyle,
-                          userScreenNameStyle: quoteUserScreenNameStyle,
-                          backgroundColor: quoteBackgroundColor,
-                          borderColor: quoteBorderColor,
-                          onTapImage: onTapImage,
-                        ),
-                      ) else Container(),
+                if (_tweetVM.quotedTweet != null)
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                    child: QuoteTweetView.fromTweet(
+                      _tweetVM.quotedTweet!,
+                      textStyle: quoteTextStyle,
+                      clickableTextStyle: quoteClickableTextStyle,
+                      userNameStyle: quoteUserNameStyle,
+                      userScreenNameStyle: quoteUserScreenNameStyle,
+                      backgroundColor: quoteBackgroundColor,
+                      borderColor: quoteBorderColor,
+                      onTapImage: onTapImage,
+                    ),
+                  )
+                else
+                  Container(),
               ],
             ),
           ),

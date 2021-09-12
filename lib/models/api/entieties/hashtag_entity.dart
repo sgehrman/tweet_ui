@@ -11,13 +11,18 @@ class HashtagEntity extends Entity {
     required List<int> indices,
   }) : super(indices: indices);
 
-  factory HashtagEntity.fromRawJson(String str) =>
-      HashtagEntity.fromJson(json.decode(str));
+  factory HashtagEntity.fromRawJson(String str) {
+    return HashtagEntity.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
-  factory HashtagEntity.fromJson(Map<String, dynamic> json) => HashtagEntity(
-        text: json['text'] == null ? null : json['text'],
-        indices: json['indices'] == null
-            ? null
-            : List<int>.from(json['indices'].map((x) => x)),
-      );
+  factory HashtagEntity.fromJson(Map<String, dynamic> json) {
+    return HashtagEntity(
+      text: json['text'] == null ? null : json['text'],
+      indices: json['indices'] == null
+          ? null
+          : List<int>.from(json['indices'].map((x) => x)),
+    );
+  }
 }

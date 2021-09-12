@@ -49,11 +49,11 @@ class QuoteTweetView extends StatelessWidget {
         openUrl(tweetVM.tweetLink);
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         child: Container(
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
               color: borderColor!,
             ),
@@ -75,7 +75,7 @@ class QuoteTweetView extends StatelessWidget {
                       tweetVM,
                       textStyle: textStyle,
                       clickableTextStyle: clickableTextStyle,
-                      padding: const EdgeInsets.only(),
+                      padding: EdgeInsets.zero,
                     ),
                   ],
                 ),

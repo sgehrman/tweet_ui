@@ -61,37 +61,39 @@ class TweetVM {
   });
 
   factory TweetVM.fromApiModel(
-          Tweet tweet, DateFormat? createdDateDisplayFormat) =>
-      TweetVM(
-        createdAt: _createdAt(tweet, createdDateDisplayFormat),
-        hasSupportedVideo: _hasSupportedVideo(_originalTweetOrRetweet(tweet)),
-        allEntities: _allEntities(_originalTweetOrRetweet(tweet)),
-        hasPhoto: _hasPhoto(_originalTweetOrRetweet(tweet)),
-        hasGif: _hasGif(_originalTweetOrRetweet(tweet)),
-        tweetLink: _tweetLink(tweet)!,
-        userLink: _userLink(tweet)!,
-        text: _text(_originalTweetOrRetweet(tweet)),
-        textRunes: _runes(_originalTweetOrRetweet(tweet)),
-        profileUrl: _profileURL(tweet)!,
-        allPhotos: _allPhotos(_originalTweetOrRetweet(tweet)),
-        userName: _userName(tweet),
-        userScreenName: _userScreenName(tweet),
-        quotedTweet: _quotedTweet(_originalTweetOrRetweet(tweet).quotedStatus,
-            createdDateDisplayFormat),
-        retweetedTweet:
-            _retweetedTweet(tweet.retweetedStatus, createdDateDisplayFormat),
-        userVerified: _userVerified(tweet),
-        videoPlaceholderUrl:
-            _videoPlaceholderUrl(_originalTweetOrRetweet(tweet)),
-        videoUrls: _videoUrls(_originalTweetOrRetweet(tweet)),
-        videoAspectRatio: _videoAspectRatio(_originalTweetOrRetweet(tweet)),
-        favoriteCount: _favoriteCount(tweet),
-        startDisplayText: _startDisplayText(_originalTweetOrRetweet(tweet)),
-        endDisplayText: _endDisplayText(_originalTweetOrRetweet(tweet)),
-        favorited: _favorited(tweet),
-      );
+    Tweet tweet,
+    DateFormat? createdDateDisplayFormat,
+  ) {
+    return TweetVM(
+      createdAt: _createdAt(tweet, createdDateDisplayFormat),
+      hasSupportedVideo: _hasSupportedVideo(_originalTweetOrRetweet(tweet)),
+      allEntities: _allEntities(_originalTweetOrRetweet(tweet)),
+      hasPhoto: _hasPhoto(_originalTweetOrRetweet(tweet)),
+      hasGif: _hasGif(_originalTweetOrRetweet(tweet)),
+      tweetLink: _tweetLink(tweet)!,
+      userLink: _userLink(tweet)!,
+      text: _text(_originalTweetOrRetweet(tweet)),
+      textRunes: _runes(_originalTweetOrRetweet(tweet)),
+      profileUrl: _profileURL(tweet)!,
+      allPhotos: _allPhotos(_originalTweetOrRetweet(tweet)),
+      userName: _userName(tweet),
+      userScreenName: _userScreenName(tweet),
+      quotedTweet: _quotedTweet(_originalTweetOrRetweet(tweet).quotedStatus,
+          createdDateDisplayFormat),
+      retweetedTweet:
+          _retweetedTweet(tweet.retweetedStatus, createdDateDisplayFormat),
+      userVerified: _userVerified(tweet),
+      videoPlaceholderUrl: _videoPlaceholderUrl(_originalTweetOrRetweet(tweet)),
+      videoUrls: _videoUrls(_originalTweetOrRetweet(tweet)),
+      videoAspectRatio: _videoAspectRatio(_originalTweetOrRetweet(tweet)),
+      favoriteCount: _favoriteCount(tweet),
+      startDisplayText: _startDisplayText(_originalTweetOrRetweet(tweet)),
+      endDisplayText: _endDisplayText(_originalTweetOrRetweet(tweet)),
+      favorited: _favorited(tweet),
+    );
+  }
 
-  static Tweet _originalTweetOrRetweet(tweet) {
+  static Tweet _originalTweetOrRetweet(Tweet tweet) {
     return tweet.retweetedStatus ?? tweet;
   }
 
@@ -181,9 +183,9 @@ class TweetVM {
       return null;
     }
     if (tweet.user.screenName.isEmpty) {
-      return "$_TWITTER_URL$_UNKNOWN_SCREEN_NAME/status/${tweet.idStr}";
+      return '$_TWITTER_URL$_UNKNOWN_SCREEN_NAME/status/${tweet.idStr}';
     } else {
-      return "$_TWITTER_URL${tweet.user.screenName}/status/${tweet.idStr}";
+      return '$_TWITTER_URL${tweet.user.screenName}/status/${tweet.idStr}';
     }
   }
 
@@ -192,9 +194,9 @@ class TweetVM {
       return null;
     }
     if (tweet.user.screenName.isEmpty) {
-      return "$_TWITTER_URL$_UNKNOWN_SCREEN_NAME";
+      return '$_TWITTER_URL$_UNKNOWN_SCREEN_NAME';
     } else {
-      return "$_TWITTER_URL${tweet.user.screenName}";
+      return '$_TWITTER_URL${tweet.user.screenName}';
     }
   }
 
@@ -261,7 +263,10 @@ class TweetVM {
     listOfVideoVariants?.sort(
         (variantA, variantB) => variantA.bitrate.compareTo(variantB.bitrate));
     if (listOfVideoVariants != null && listOfVideoVariants.isNotEmpty) {
-      return { for (var variant in listOfVideoVariants) (variant as Variant).bitrate.toString() + ' kbps' : (variant as Variant).url };
+      return {
+        for (var variant in listOfVideoVariants)
+          variant.bitrate.toString() + ' kbps': variant.url
+      };
     } else {
       return {};
     }
@@ -291,7 +296,7 @@ class TweetVM {
   }
 
   static bool _favorited(Tweet tweet) {
-    return tweet.favorited != null ? tweet.favorited! : false;
+    return tweet.favorited == true;
   }
 }
 

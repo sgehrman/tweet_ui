@@ -32,13 +32,17 @@ class User {
     this.profileImageUrlHttps,
   });
 
-  factory User.fromRawJson(String str) => User.fromJson(json.decode(str));
+  factory User.fromRawJson(String str) {
+    return User.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json['id'] == null ? null : json['id'].toDouble(),
         name: json['name'] == null ? null : json['name'],
         screenName: json['screen_name'] == null ? null : json['screen_name'],
-        verified: json["verified"] ?? null,
+        verified: json['verified'],
         profileImageUrlHttps: json['profile_image_url_https'] == null
             ? null
             : json['profile_image_url_https'],

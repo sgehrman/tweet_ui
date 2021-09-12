@@ -79,7 +79,11 @@ class Tweet {
     this.displayTextRange,
   });
 
-  factory Tweet.fromRawJson(String str) => Tweet.fromJson(json.decode(str));
+  factory Tweet.fromRawJson(String str) {
+    return Tweet.fromJson(
+      Map<String, dynamic>.from(json.decode(str) as Map),
+    );
+  }
 
   factory Tweet.fromJson(Map<String, dynamic> json) => Tweet(
         createdAt: json['created_at'] == null ? null : json['created_at'],
@@ -91,7 +95,8 @@ class Tweet {
         retweetedStatus: json['retweeted_status'] == null
             ? null
             : Tweet.fromJson(json['retweeted_status']),
-        text: json["text"] ?? (json["full_text"] == null ? null : json["full_text"]),
+        text: json['text'] ??
+            (json['full_text'] == null ? null : json['full_text']),
         entities: json['entities'] == null
             ? const TweetEntities.empty()
             : TweetEntities.fromJson(json['entities']),
@@ -101,7 +106,7 @@ class Tweet {
         user: User.fromJson(json['user']),
         isQuoteStatus:
             json['is_quote_status'] == null ? null : json['is_quote_status'],
-        favorited: json["favorited"] ?? null,
+        favorited: json['favorited'],
         favoriteCount:
             json['favorite_count'] == null ? null : json['favorite_count'],
         displayTextRange: json['display_text_range'] == null

@@ -47,7 +47,9 @@ class TweetText extends StatelessWidget {
     int? boundary = tweetVM.startDisplayText;
     final unescape = HtmlUnescape();
 
-    if (tweetVM.startDisplayText == 0 && tweetVM.endDisplayText == 0) return [];
+    if (tweetVM.startDisplayText == 0 && tweetVM.endDisplayText == 0) {
+      return [];
+    }
 
     if (tweetVM.allEntities.isEmpty) {
       spans.add(TextSpan(
@@ -60,7 +62,9 @@ class TweetText extends StatelessWidget {
         final startIndex = entity.start;
 
         // respect the `display_text_range` from JSON.
-        if (startIndex > tweetVM.endDisplayText!) return;
+        if (startIndex > tweetVM.endDisplayText!) {
+          return;
+        }
 
         // add any plain text before the next entity
         if (startIndex > boundary!) {
@@ -79,7 +83,7 @@ class TweetText extends StatelessWidget {
             style: clickableTextStyle,
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
-                openUrl(urlEntity.url);
+                await openUrl(urlEntity.url);
               },
           ));
         } else {
@@ -94,13 +98,16 @@ class TweetText extends StatelessWidget {
               ..onTap = () async {
                 if (entity.runtimeType == MentionEntity) {
                   final MentionEntity mentionEntity = entity as MentionEntity;
-                  openUrl('https://twitter.com/${mentionEntity.screenName}');
+                  await openUrl(
+                      'https://twitter.com/${mentionEntity.screenName}');
                 } else if (entity.runtimeType == SymbolEntity) {
                   final SymbolEntity symbolEntity = entity as SymbolEntity;
-                  openUrl('https://twitter.com/search?q=${symbolEntity.text}');
+                  await openUrl(
+                      'https://twitter.com/search?q=${symbolEntity.text}');
                 } else if (entity.runtimeType == HashtagEntity) {
                   final HashtagEntity hashtagEntity = entity as HashtagEntity;
-                  openUrl('https://twitter.com/hashtag/${hashtagEntity.text}');
+                  await openUrl(
+                      'https://twitter.com/hashtag/${hashtagEntity.text}');
                 }
               },
           ));

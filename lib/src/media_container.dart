@@ -36,7 +36,7 @@ class MediaContainer extends StatefulWidget {
 
 class _MediaContainerState extends State<MediaContainer>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  late var hashcode;
+  late String hashcode;
 
   @override
   void initState() {
@@ -113,7 +113,7 @@ class _MediaContainerState extends State<MediaContainer>
                   child: _buildSinglePhoto(context,
                       widget.tweetVM.getDisplayTweet().allPhotos, 0, hashcode),
                 ),
-                VerticalDivider(color: Colors.white, width: 1.0),
+                const VerticalDivider(color: Colors.white, width: 1.0),
                 Expanded(
                   child: _buildSinglePhoto(context,
                       widget.tweetVM.getDisplayTweet().allPhotos, 1, hashcode),
@@ -131,7 +131,7 @@ class _MediaContainerState extends State<MediaContainer>
                   child: _buildSinglePhoto(context,
                       widget.tweetVM.getDisplayTweet().allPhotos, 0, hashcode),
                 ),
-                VerticalDivider(color: Colors.white, width: 1.0),
+                const VerticalDivider(color: Colors.white, width: 1.0),
                 Expanded(
                   child: Column(
                     children: <Widget>[
@@ -142,7 +142,7 @@ class _MediaContainerState extends State<MediaContainer>
                             1,
                             hashcode),
                       ),
-                      Divider(color: Colors.white, height: 1.0),
+                      const Divider(color: Colors.white, height: 1.0),
                       Expanded(
                         child: _buildSinglePhoto(
                             context,
@@ -163,7 +163,7 @@ class _MediaContainerState extends State<MediaContainer>
                 ? MediaContainer.SQUARE_ASPECT_RATIO
                 : MediaContainer.DEFAULT_ASPECT_RATIO_MEDIA_CONTAINER,
             child: GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 4,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -184,22 +184,22 @@ class _MediaContainerState extends State<MediaContainer>
           );
           break;
         default:
-          return SizedBox(width: 0.0, height: 0.0);
+          return const SizedBox(width: 0.0, height: 0.0);
       }
     }
     BorderRadius borderRadius;
     switch (widget.viewMode) {
       case ViewMode.compact:
         if (!widget.tweetVM.getDisplayTweet().hasSupportedVideo) {
-          borderRadius = BorderRadius.all(Radius.circular(8.0));
+          borderRadius = const BorderRadius.all(Radius.circular(8.0));
         } else {
-          borderRadius = BorderRadius.all(Radius.zero);
+          borderRadius = BorderRadius.zero;
         }
         break;
       case ViewMode.standard:
       case ViewMode.quote:
       default:
-        borderRadius = BorderRadius.all(Radius.zero);
+        borderRadius = BorderRadius.zero;
         break;
     }
 

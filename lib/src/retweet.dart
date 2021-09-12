@@ -22,6 +22,7 @@ class RetweetInformation extends StatelessWidget {
           openUrl(tweetVM.userLink);
         },
         child: Padding(
+          padding: const EdgeInsets.only(bottom: 4.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -49,7 +50,6 @@ class RetweetInformation extends StatelessWidget {
               ),
             ],
           ),
-          padding: EdgeInsets.only(bottom: 4.0),
         ),
       );
     } else {
