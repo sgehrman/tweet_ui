@@ -265,9 +265,30 @@ class _MediaContainerState extends State<MediaContainer>
                 context,
                 MaterialPageRoute(
                   builder: (_) {
-                    return PhotoViewGallery(
-                      pageOptions: galleryPageOptions,
-                      pageController: PageController(initialPage: photoIndex),
+                    return Material(
+                      child: Stack(
+                        children: [
+                          PhotoViewGallery(
+                            pageOptions: galleryPageOptions,
+                            pageController:
+                                PageController(initialPage: photoIndex),
+                          ),
+                          Positioned(
+                            top: 20,
+                            left: 20,
+                            child: IconButton(
+                              iconSize: 54,
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              icon: const Icon(
+                                Icons.clear,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

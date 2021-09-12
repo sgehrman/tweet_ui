@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:better_player/better_player.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tweet_ui/models/viewmodels/tweet_vm.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TweetVideo extends StatefulWidget {
   const TweetVideo(
@@ -94,8 +98,42 @@ class _TweetVideoState extends State<TweetVideo>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BetterPlayer(
-      controller: controller,
+
+    // web or mobile, doesn't work on desktop
+    if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
+      return BetterPlayer(
+        controller: controller,
+      );
+    }
+
+    return SizedBox(
+      height: 200,
+      width: 300,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              "Video doesn't work on desktop.",
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                final video =
+                    widget.tweetVM.getDisplayTweet().videoUrls.values.last;
+
+                if (await canLaunch(video)) {
+                  await launch(video);
+                } else {
+                  print('Could not launch $video');
+                }
+              },
+              child: const Text('Open in Browser'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
