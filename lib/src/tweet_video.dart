@@ -48,7 +48,7 @@ class _TweetVideoState extends State<TweetVideo>
           // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
           setState(() {});
         });
-    } else {
+    } else if (Platform.isAndroid || Platform.isIOS) {
       betterPlayerConfiguration = BetterPlayerConfiguration(
         placeholder: const Center(
           child: SizedBox(
