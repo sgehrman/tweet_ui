@@ -58,33 +58,30 @@ class TweetPage extends StatelessWidget {
       child: Text(
         headerTitle,
         textAlign: TextAlign.start,
-        style: TextStyle(fontWeight: FontWeight.w700),
+        style: const TextStyle(fontWeight: FontWeight.w700),
       ),
     );
   }
 
   /// Builds a TweetView from a JSON file
   Widget buildEmbeddedTweetView(String jsonFile) {
-    return FutureBuilder(
+    return FutureBuilder<String>(
       future: rootBundle.loadString(jsonFile),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: EmbeddedTweetView.fromTweet(
               Tweet.fromRawJson(
-                snapshot.data,
+                snapshot.data!,
               ),
-              darkMode: false,
               createdDateDisplayFormat: DateFormat("EEE, MMM d, ''yy"),
             ),
           );
         }
         if (snapshot.hasError) {
-          return Container(
-            child: Text(
-              snapshot.error.toString(),
-            ),
+          return Text(
+            snapshot.error.toString(),
           );
         } else {
           return Container();
@@ -95,22 +92,20 @@ class TweetPage extends StatelessWidget {
 
   /// Builds a TweetView from a JSON file
   Widget buildTweet(String jsonFile) {
-    return FutureBuilder(
+    return FutureBuilder<String>(
       future: rootBundle.loadString(jsonFile),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           return TweetView.fromTweet(
             Tweet.fromRawJson(
-              snapshot.data,
+              snapshot.data!,
             ),
             createdDateDisplayFormat: DateFormat("EEE, MMM d, ''yy"),
           );
         }
         if (snapshot.hasError) {
-          return Container(
-            child: Text(
-              snapshot.error.toString(),
-            ),
+          return Text(
+            snapshot.error.toString(),
           );
         } else {
           return Container();
@@ -121,21 +116,19 @@ class TweetPage extends StatelessWidget {
 
   /// Builds a CompactTweetView from a JSON file
   Widget buildCompactTweetView(String jsonFile) {
-    return FutureBuilder(
+    return FutureBuilder<String>(
       future: rootBundle.loadString(jsonFile),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CompactTweetView.fromTweet(
             Tweet.fromRawJson(
-              snapshot.data,
+              snapshot.data!,
             ),
           );
         }
         if (snapshot.hasError) {
-          return Container(
-            child: Text(
-              snapshot.error.toString(),
-            ),
+          return Text(
+            snapshot.error.toString(),
           );
         } else {
           return Container();

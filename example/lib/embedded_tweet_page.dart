@@ -20,23 +20,23 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (darkMode) ? Colors.grey[900] : Colors.white,
+      backgroundColor: darkMode ? Colors.grey[900] : Colors.white,
       appBar: AppBar(
-        title: Text('Embedded Tweets'),
+        title: const Text('Embedded Tweets'),
       ),
       body: Container(
-        margin: EdgeInsets.only(left: 15, right: 15),
+        margin: const EdgeInsets.only(left: 15, right: 15),
         child: ListView(
-          padding: EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.only(top: 15),
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 15, right: 15),
-              color: (darkMode) ? Colors.grey[800] : Colors.white,
+              margin: const EdgeInsets.only(left: 15, right: 15),
+              color: darkMode ? Colors.grey[800] : Colors.white,
               child: ListTile(
                 title: Text(
                   'Dark Mode',
-                  style: TextStyle(
-                      color: (darkMode) ? Colors.white : Colors.black),
+                  style:
+                      TextStyle(color: darkMode ? Colors.white : Colors.black),
                 ),
                 trailing: Switch(
                     value: darkMode,
@@ -92,27 +92,25 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
 
   /// Builds a TweetView from a JSON file
   Widget buildEmbeddedTweetView(String jsonFile, bool darkMode) {
-    return FutureBuilder(
+    return FutureBuilder<String>(
       future: rootBundle.loadString(jsonFile),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
-            margin: EdgeInsets.only(left: 15, right: 15, top: 20),
+            margin: const EdgeInsets.only(left: 15, right: 15, top: 20),
             child: EmbeddedTweetView.fromTweet(
               Tweet.fromRawJson(
-                snapshot.data,
+                snapshot.data!,
               ),
-              backgroundColor: (darkMode) ? Colors.grey[800]! : Colors.white,
+              backgroundColor: darkMode ? Colors.grey[800]! : Colors.white,
               darkMode: darkMode,
               createdDateDisplayFormat: DateFormat("EEE, MMM d, ''yy"),
             ),
           );
         }
         if (snapshot.hasError) {
-          return Container(
-            child: Text(
-              snapshot.error.toString(),
-            ),
+          return Text(
+            snapshot.error.toString(),
           );
         } else {
           return Container();

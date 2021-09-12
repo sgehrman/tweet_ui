@@ -15,32 +15,32 @@ class TweetUiExample extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: '1 photo',
             tweetPath: 'assets/tweet_examples/tweet_1_photo.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_1_photo.json',
           ),
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: '2 photos',
             tweetPath: 'assets/tweet_examples/tweet_2_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_2_photos.json',
           ),
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: '3 photos',
             tweetPath: 'assets/tweet_examples/tweet_3_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_3_photos.json',
           ),
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: '4 photos',
             tweetPath: 'assets/tweet_examples/tweet_4_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_4_photos.json',
           ),
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: 'Video',
             tweetPath: 'assets/tweet_examples/tweet_video.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_video.json',
           ),
-          OpenTweetPageButton(
+          const OpenTweetPageButton(
             title: 'GIF',
             tweetPath: 'assets/tweet_examples/tweet_gif.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_gif.json',
@@ -61,8 +61,10 @@ class TweetUiExample extends StatelessWidget {
           textAlign: TextAlign.start,
         ),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => EmbeddedTweetPage()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const EmbeddedTweetPage()));
         },
       ),
     );
