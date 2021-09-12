@@ -8,17 +8,16 @@ class HashtagEntity extends Entity {
 
   HashtagEntity({
     required this.text,
-    required indices,
+    required List<int> indices,
   }) : super(indices: indices);
 
   factory HashtagEntity.fromRawJson(String str) =>
       HashtagEntity.fromJson(json.decode(str));
 
-  factory HashtagEntity.fromJson(Map<String, dynamic> json) =>
-      new HashtagEntity(
-        text: json["text"] == null ? null : json["text"],
-        indices: json["indices"] == null
+  factory HashtagEntity.fromJson(Map<String, dynamic> json) => HashtagEntity(
+        text: json['text'] == null ? null : json['text'],
+        indices: json['indices'] == null
             ? null
-            : new List<int>.from(json["indices"].map((x) => x)),
+            : List<int>.from(json['indices'].map((x) => x)),
       );
 }

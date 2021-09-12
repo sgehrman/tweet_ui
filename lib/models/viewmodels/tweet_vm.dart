@@ -4,11 +4,11 @@ import 'package:tweet_ui/models/api/entieties/media_entity.dart';
 import 'package:tweet_ui/models/api/tweet.dart';
 
 class TweetVM {
-  static const String _PHOTO_TYPE = "photo";
-  static const String _VIDEO_TYPE = "video";
-  static const String _GIF_TYPE = "animated_gif";
-  static const String _TWITTER_URL = "https://twitter.com/";
-  static const String _UNKNOWN_SCREEN_NAME = "twitter_unknown";
+  static const String _PHOTO_TYPE = 'photo';
+  static const String _VIDEO_TYPE = 'video';
+  static const String _GIF_TYPE = 'animated_gif';
+  static const String _TWITTER_URL = 'https://twitter.com/';
+  static const String _UNKNOWN_SCREEN_NAME = 'twitter_unknown';
 
   final String createdAt;
   final bool hasSupportedVideo;
@@ -62,7 +62,7 @@ class TweetVM {
 
   factory TweetVM.fromApiModel(
           Tweet tweet, DateFormat? createdDateDisplayFormat) =>
-      new TweetVM(
+      TweetVM(
         createdAt: _createdAt(tweet, createdDateDisplayFormat),
         hasSupportedVideo: _hasSupportedVideo(_originalTweetOrRetweet(tweet)),
         allEntities: _allEntities(_originalTweetOrRetweet(tweet)),
@@ -92,14 +92,14 @@ class TweetVM {
       );
 
   static Tweet _originalTweetOrRetweet(tweet) {
-    return tweet.retweetedStatus != null ? tweet.retweetedStatus : tweet;
+    return tweet.retweetedStatus ?? tweet;
   }
 
   static String _createdAt(Tweet tweet, DateFormat? displayFormat) {
-    DateFormat twitterFormat =
-        new DateFormat("EEE MMM dd HH:mm:ss '+0000' yyyy", 'en_US');
+    final DateFormat twitterFormat =
+        DateFormat("EEE MMM dd HH:mm:ss '+0000' yyyy", 'en_US');
     final dateTime = twitterFormat.parseUTC(tweet.createdAt).toLocal();
-    return (displayFormat ?? new DateFormat("HH:mm • MM.dd.yyyy", 'en_US'))
+    return (displayFormat ?? DateFormat('HH:mm • MM.dd.yyyy', 'en_US'))
         .format(dateTime);
   }
 
@@ -261,17 +261,14 @@ class TweetVM {
     listOfVideoVariants?.sort(
         (variantA, variantB) => variantA.bitrate.compareTo(variantB.bitrate));
     if (listOfVideoVariants != null && listOfVideoVariants.isNotEmpty) {
-      return Map.fromIterable(listOfVideoVariants,
-          key: (dynamic variant) =>
-              (variant as Variant).bitrate.toString() + ' kbps',
-          value: (dynamic variant) => (variant as Variant).url);
+      return { for (var variant in listOfVideoVariants) (variant as Variant).bitrate.toString() + ' kbps' : (variant as Variant).url };
     } else {
       return {};
     }
   }
 
   static double? _videoAspectRatio(Tweet tweet) {
-    VideoInfo? videoInfo = _videoEntity(tweet)?.videoInfo;
+    final VideoInfo? videoInfo = _videoEntity(tweet)?.videoInfo;
     if (videoInfo != null) {
       return videoInfo.aspectRatio[0] / videoInfo.aspectRatio[1];
     } else {
@@ -300,7 +297,7 @@ class TweetVM {
 
 extension ExtendedText on TweetVM {
   TweetVM getDisplayTweet() {
-    if (this.retweetedTweet != null) {
+    if (retweetedTweet != null) {
       return retweetedTweet!;
     } else {
       return this;

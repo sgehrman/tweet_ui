@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:tweet_ui/models/viewmodels/tweet_vm.dart';
 
 class TweetVideo extends StatefulWidget {
-  TweetVideo(
+  const TweetVideo(
     this.tweetVM, {
     Key? key,
     this.initialVolume = 0.0,
@@ -49,12 +49,9 @@ class _TweetVideoState extends State<TweetVideo>
         enableMute: !widget.tweetVM.getDisplayTweet().hasGif,
         showControls: !widget.tweetVM.getDisplayTweet().hasGif,
         enableSubtitles: false,
-        enableQualities: true,
-        enableOverflowMenu: true,
         enableFullscreen: widget.enableFullscreen,
       ),
       allowedScreenSleep: false,
-      fullScreenByDefault: false,
       deviceOrientationsOnFullScreen: [
         DeviceOrientation.portraitUp,
         DeviceOrientation.landscapeLeft,
@@ -71,7 +68,7 @@ class _TweetVideoState extends State<TweetVideo>
             ? Align(
                 alignment: Alignment.bottomLeft,
                 child: Image.asset(
-                  "assets/tw__ic_gif_badge.png",
+                  'assets/tw__ic_gif_badge.png',
                   fit: BoxFit.fitWidth,
                   package: 'tweet_ui',
                   height: 16,
@@ -81,7 +78,7 @@ class _TweetVideoState extends State<TweetVideo>
             : Container(),
       ),
     );
-    var videoUrl = widget.videoHighQuality!
+    final videoUrl = widget.videoHighQuality!
         ? widget.tweetVM.getDisplayTweet().videoUrls.values.last
         : widget.tweetVM.getDisplayTweet().videoUrls.values.first;
     controller = BetterPlayerController(

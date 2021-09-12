@@ -27,14 +27,10 @@ class Byline extends StatelessWidget {
     switch (viewMode) {
       case ViewMode.standard:
         return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Flexible(
                   child: Text(
@@ -54,15 +50,15 @@ class Byline extends StatelessWidget {
             ),
             showDate
                 ? Text(
-                    "@" +
+                    '@' +
                         tweetVM.getDisplayTweet().userScreenName +
-                        " • " +
+                        ' • ' +
                         tweetVM.getDisplayTweet().createdAt,
                     textAlign: TextAlign.start,
                     style: userScreenNameStyle,
                   )
                 : Text(
-                    "@" + tweetVM.getDisplayTweet().userScreenName,
+                    '@' + tweetVM.getDisplayTweet().userScreenName,
                     textAlign: TextAlign.start,
                     style: userScreenNameStyle,
                   ),
@@ -71,7 +67,6 @@ class Byline extends StatelessWidget {
       case ViewMode.compact:
       case ViewMode.quote:
         return Row(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
@@ -82,7 +77,6 @@ class Byline extends StatelessWidget {
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       tweetVM.getDisplayTweet().userName,
@@ -98,7 +92,7 @@ class Byline extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 4.0),
                         child: Text(
-                          "@" + tweetVM.getDisplayTweet().userScreenName,
+                          '@' + tweetVM.getDisplayTweet().userScreenName,
                           style: userScreenNameStyle,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
@@ -113,7 +107,7 @@ class Byline extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 4.0),
                               child: Text(
-                                "• " + tweetVM.getDisplayTweet().createdAt,
+                                '• ' + tweetVM.getDisplayTweet().createdAt,
                                 style: userScreenNameStyle,
                                 maxLines: 1,
                                 overflow: TextOverflow.fade,

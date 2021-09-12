@@ -16,10 +16,10 @@ class MentionEntity extends Entity {
       MentionEntity.fromJson(json.decode(str));
 
   factory MentionEntity.fromJson(Map<String, dynamic> json) =>
-      new MentionEntity(
-        screenName: json["screen_name"] == null ? null : json["screen_name"],
-        indices: json["indices"] == null
+      MentionEntity(
+        screenName: json['screen_name'] == null ? null : json['screen_name'],
+        indices: json['indices'] == null
             ? null
-            : new List<int>.from(json["indices"].map((x) => x)),
+            : List<int>.from(json['indices'].map((x) => x)),
       );
 }

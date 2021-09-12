@@ -20,7 +20,7 @@ class QuoteTweetView extends StatelessWidget {
   final Color? backgroundColor;
   final OnTapImage? onTapImage;
 
-  QuoteTweetView(
+  const QuoteTweetView(
     this.tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -31,7 +31,7 @@ class QuoteTweetView extends StatelessWidget {
     this.onTapImage,
   }); //  TweetView(this.tweetVM);
 
-  QuoteTweetView.fromTweet(
+  const QuoteTweetView.fromTweet(
     this.tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -54,14 +54,12 @@ class QuoteTweetView extends StatelessWidget {
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            border: new Border.all(
+            border: Border.all(
               color: borderColor!,
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -77,7 +75,7 @@ class QuoteTweetView extends StatelessWidget {
                       tweetVM,
                       textStyle: textStyle,
                       clickableTextStyle: clickableTextStyle,
-                      padding: const EdgeInsets.only(top: 0.0),
+                      padding: const EdgeInsets.only(),
                     ),
                   ],
                 ),

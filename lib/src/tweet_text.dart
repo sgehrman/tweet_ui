@@ -11,7 +11,7 @@ import 'package:tweet_ui/models/viewmodels/tweet_vm.dart';
 import 'package:tweet_ui/src/url_launcher.dart';
 
 class TweetText extends StatelessWidget {
-  TweetText(
+  const TweetText(
     this.tweetVM, {
     Key? key,
     this.textStyle,
@@ -26,14 +26,13 @@ class TweetText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var spans = _getSpans(context);
+    final spans = _getSpans(context);
     if (spans.isNotEmpty) {
       return Padding(
         padding: padding!,
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: RichText(
-            textAlign: TextAlign.start,
             text: TextSpan(children: spans),
           ),
         ),
@@ -44,9 +43,9 @@ class TweetText extends StatelessWidget {
   }
 
   List<TextSpan> _getSpans(BuildContext context) {
-    List<TextSpan> spans = [];
+    final List<TextSpan> spans = [];
     int? boundary = tweetVM.startDisplayText;
-    var unescape = new HtmlUnescape();
+    final unescape = HtmlUnescape();
 
     if (tweetVM.startDisplayText == 0 && tweetVM.endDisplayText == 0) return [];
 
@@ -73,7 +72,7 @@ class TweetText extends StatelessWidget {
         }
 
         if (entity.runtimeType == UrlEntity) {
-          UrlEntity urlEntity = (entity as UrlEntity);
+          final UrlEntity urlEntity = entity as UrlEntity;
           final spanText = unescape.convert(urlEntity.displayUrl);
           spans.add(TextSpan(
             text: spanText,
@@ -94,14 +93,14 @@ class TweetText extends StatelessWidget {
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
                 if (entity.runtimeType == MentionEntity) {
-                  MentionEntity mentionEntity = (entity as MentionEntity);
-                  openUrl("https://twitter.com/${mentionEntity.screenName}");
+                  final MentionEntity mentionEntity = entity as MentionEntity;
+                  openUrl('https://twitter.com/${mentionEntity.screenName}');
                 } else if (entity.runtimeType == SymbolEntity) {
-                  SymbolEntity symbolEntity = (entity as SymbolEntity);
-                  openUrl("https://twitter.com/search?q=${symbolEntity.text}");
+                  final SymbolEntity symbolEntity = entity as SymbolEntity;
+                  openUrl('https://twitter.com/search?q=${symbolEntity.text}');
                 } else if (entity.runtimeType == HashtagEntity) {
-                  HashtagEntity hashtagEntity = (entity as HashtagEntity);
-                  openUrl("https://twitter.com/hashtag/${hashtagEntity.text}");
+                  final HashtagEntity hashtagEntity = entity as HashtagEntity;
+                  openUrl('https://twitter.com/hashtag/${hashtagEntity.text}');
                 }
               },
           ));

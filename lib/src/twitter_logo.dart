@@ -8,7 +8,7 @@ class TwitterLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      "assets/tw__ic_logo_blue.png",
+      'assets/tw__ic_logo_blue.png',
       fit: BoxFit.fitWidth,
       package: 'tweet_ui',
       height: 16,

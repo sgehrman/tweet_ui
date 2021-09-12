@@ -40,7 +40,7 @@ class _MediaContainerState extends State<MediaContainer>
 
   @override
   void initState() {
-    hashcode = this.hashCode.toString();
+    hashcode = hashCode.toString();
     super.initState();
   }
 
@@ -74,7 +74,7 @@ class _MediaContainerState extends State<MediaContainer>
                     ? Align(
                         alignment: Alignment.bottomLeft,
                         child: Image.asset(
-                          "assets/tw__ic_gif_badge.png",
+                          'assets/tw__ic_gif_badge.png',
                           fit: BoxFit.fitWidth,
                           package: 'tweet_ui',
                           height: 16,
@@ -159,6 +159,9 @@ class _MediaContainerState extends State<MediaContainer>
           break;
         case 4:
           child = AspectRatio(
+            aspectRatio: widget.viewMode == ViewMode.standard
+                ? MediaContainer.SQUARE_ASPECT_RATIO
+                : MediaContainer.DEFAULT_ASPECT_RATIO_MEDIA_CONTAINER,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               itemCount: 4,
@@ -178,13 +181,10 @@ class _MediaContainerState extends State<MediaContainer>
                     hashcode);
               },
             ),
-            aspectRatio: widget.viewMode == ViewMode.standard
-                ? MediaContainer.SQUARE_ASPECT_RATIO
-                : MediaContainer.DEFAULT_ASPECT_RATIO_MEDIA_CONTAINER,
           );
           break;
         default:
-          return Container(width: 0.0, height: 0.0);
+          return SizedBox(width: 0.0, height: 0.0);
       }
     }
     BorderRadius borderRadius;
@@ -233,7 +233,7 @@ class _MediaContainerState extends State<MediaContainer>
             ))
         .toList(growable: false);
     return GestureDetector(
-      onTap: this.widget.onTapImage == null
+      onTap: widget.onTapImage == null
           ? () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (_) {
@@ -244,14 +244,14 @@ class _MediaContainerState extends State<MediaContainer>
                 },
               ));
             }
-          : () => this.widget.onTapImage!(allPhotos, photoIndex, hashcode),
+          : () => widget.onTapImage!(allPhotos, photoIndex, hashcode),
       child: Hero(
+        tag: allPhotos[photoIndex] + hashcode,
         child: Image(
           image: CachedNetworkImageProvider(allPhotos[photoIndex]),
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
         ),
-        tag: allPhotos[photoIndex] + hashcode,
       ),
     );
   }

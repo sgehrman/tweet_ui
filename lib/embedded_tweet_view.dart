@@ -41,7 +41,7 @@ class EmbeddedTweetView extends StatelessWidget {
   /// If set to false betterplayer/video_player will load the lowest quality available.
   final bool videoHighQuality;
 
-  EmbeddedTweetView(
+  const EmbeddedTweetView(
     this._tweetVM, {
     this.backgroundColor,
     required this.darkMode,
@@ -94,12 +94,12 @@ class EmbeddedTweetView extends StatelessWidget {
                             child: Column(
                               children: <Widget>[
                                 Padding(
+                                  padding: EdgeInsets.only(left: 28),
                                   child: RetweetInformation(
                                     _tweetVM,
                                     retweetInformationStyle:
                                         defaultEmbeddedRetweetInformationStyle,
                                   ),
-                                  padding: EdgeInsets.only(left: 28),
                                 ),
                                 Row(
                                   children: <Widget>[
@@ -112,14 +112,13 @@ class EmbeddedTweetView extends StatelessWidget {
                                           _tweetVM,
                                           ViewMode.standard,
                                           userNameStyle: TextStyle(
-                                            color: (darkMode)
+                                            color: darkMode
                                                 ? Colors.white
                                                 : Colors.black,
                                             fontSize: 16.0,
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.w700,
                                           ),
-                                          showDate: false,
                                           userScreenNameStyle:
                                               defaultEmbeddedUserNameStyle,
                                         ),
@@ -144,7 +143,7 @@ class EmbeddedTweetView extends StatelessWidget {
                     },
                     child: TweetText(
                       _tweetVM,
-                      textStyle: (darkMode)
+                      textStyle: darkMode
                           ? defaultEmbeddedDarkTextStyle
                           : defaultEmbeddedTextStyle,
                       clickableTextStyle: defaultEmbeddedClickableTextStyle,
@@ -152,8 +151,7 @@ class EmbeddedTweetView extends StatelessWidget {
                           horizontal: 8.0, vertical: 15.0),
                     ),
                   ),
-                  (_tweetVM.quotedTweet != null)
-                      ? Padding(
+                  if (_tweetVM.quotedTweet != null) Padding(
                           padding: EdgeInsets.only(top: 8.0, bottom: 10),
                           child: QuoteTweetViewEmbed.fromTweet(
                             _tweetVM.quotedTweet!,
@@ -170,8 +168,7 @@ class EmbeddedTweetView extends StatelessWidget {
                             borderColor: null,
                             onTapImage: onTapImage,
                           ),
-                        )
-                      : Container(),
+                        ) else Container(),
                 ],
               ),
             ),
@@ -193,21 +190,21 @@ class EmbeddedTweetView extends StatelessWidget {
               children: <Widget>[
                 Icon(
                   _tweetVM.favorited ? Icons.favorite : Icons.favorite_border,
-                  color: (darkMode) ? Colors.grey[400] : Colors.grey[600],
+                  color: darkMode ? Colors.grey[400] : Colors.grey[600],
                   size: 18,
                 ),
                 Container(
                     margin: EdgeInsets.only(left: 6),
                     child: Text(_tweetVM.favoriteCount.toString(),
                         style: TextStyle(
-                            color: (darkMode)
+                            color: darkMode
                                 ? Colors.grey[400]
                                 : Colors.grey[600]))),
                 Container(
                     margin: EdgeInsets.only(left: 16),
                     child: Text(_tweetVM.createdAt,
                         style: TextStyle(
-                            color: (darkMode)
+                            color: darkMode
                                 ? Colors.grey[400]
                                 : Colors.grey[600])))
               ],
@@ -224,11 +221,10 @@ class EmbeddedTweetView extends StatelessWidget {
                 openUrl(_tweetVM.userLink);
               },
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.person_outline,
-                    color: (darkMode) ? Colors.blue[100] : Colors.blue[700],
+                    color: darkMode ? Colors.blue[100] : Colors.blue[700],
                   ),
                   Expanded(
                     child: Padding(
@@ -236,7 +232,7 @@ class EmbeddedTweetView extends StatelessWidget {
                       child: Text(
                         "${_tweetVM.userName}'s other tweets",
                         style: TextStyle(
-                            color: (darkMode)
+                            color: darkMode
                                 ? Colors.blue[100]
                                 : Colors.blue[800],
                             fontWeight: FontWeight.w400),

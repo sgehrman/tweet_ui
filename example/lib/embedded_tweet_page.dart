@@ -22,7 +22,7 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
     return Scaffold(
       backgroundColor: (darkMode) ? Colors.grey[900] : Colors.white,
       appBar: AppBar(
-        title: Text("Embedded Tweets"),
+        title: Text('Embedded Tweets'),
       ),
       body: Container(
         margin: EdgeInsets.only(left: 15, right: 15),
@@ -34,7 +34,7 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
               color: (darkMode) ? Colors.grey[800] : Colors.white,
               child: ListTile(
                 title: Text(
-                  "Dark Mode",
+                  'Dark Mode',
                   style: TextStyle(
                       color: (darkMode) ? Colors.white : Colors.black),
                 ),
@@ -48,31 +48,31 @@ class _EmbeddedTweetPageState extends State<EmbeddedTweetPage> {
               ),
             ),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_1_photo.json", darkMode),
+                'assets/tweet_examples/tweet_1_photo.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_1_photo.json", darkMode),
+                'assets/tweet_examples/tweet_quote_1_photo.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_2_photos.json", darkMode),
+                'assets/tweet_examples/tweet_2_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_2_photos.json", darkMode),
+                'assets/tweet_examples/tweet_quote_2_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_3_photos.json", darkMode),
+                'assets/tweet_examples/tweet_3_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_3_photos.json", darkMode),
+                'assets/tweet_examples/tweet_quote_3_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_4_photos.json", darkMode),
+                'assets/tweet_examples/tweet_4_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_4_photos.json", darkMode),
+                'assets/tweet_examples/tweet_quote_4_photos.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_video.json", darkMode),
+                'assets/tweet_examples/tweet_video.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_video.json", darkMode),
+                'assets/tweet_examples/tweet_quote_video.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_gif.json", darkMode),
+                'assets/tweet_examples/tweet_gif.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_quote_gif.json", darkMode),
+                'assets/tweet_examples/tweet_quote_gif.json', darkMode),
             buildEmbeddedTweetView(
-                "assets/tweet_examples/tweet_retweet.json", darkMode),
+                'assets/tweet_examples/tweet_retweet.json', darkMode),
           ],
         ),
       ),

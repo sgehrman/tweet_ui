@@ -70,7 +70,7 @@ class CompactTweetView extends StatelessWidget {
   /// If set to false betterplayer/video_player will load the lowest quality available.
   final bool videoHighQuality;
 
-  CompactTweetView(
+  const CompactTweetView(
     this._tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -122,17 +122,15 @@ class CompactTweetView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(
+              padding: EdgeInsets.only(left: 24),
               child: RetweetInformation(
                 _tweetVM,
                 retweetInformationStyle:
                     defaultCompactRetweetInformationNameStyle,
               ),
-              padding: EdgeInsets.only(left: 24),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 ProfileImage(tweetVM: _tweetVM),
                 Expanded(
@@ -140,7 +138,6 @@ class CompactTweetView extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
                           child: Byline(
@@ -166,11 +163,10 @@ class CompactTweetView extends StatelessWidget {
                             _tweetVM,
                             textStyle: textStyle,
                             clickableTextStyle: clickableTextStyle,
-                            padding: const EdgeInsets.only(top: 0.0),
+                            padding: const EdgeInsets.only(),
                           ),
                         ),
-                        (_tweetVM.quotedTweet != null)
-                            ? Padding(
+                        if (_tweetVM.quotedTweet != null) Padding(
                                 padding: EdgeInsets.only(top: 8.0),
                                 child: QuoteTweetView.fromTweet(
                                   _tweetVM.quotedTweet!,
@@ -181,8 +177,7 @@ class CompactTweetView extends StatelessWidget {
                                   backgroundColor: quoteBackgroundColor,
                                   borderColor: quoteBorderColor,
                                 ),
-                              )
-                            : Container(),
+                              ) else Container(),
                       ],
                     ),
                   ),

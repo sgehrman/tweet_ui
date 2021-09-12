@@ -20,7 +20,7 @@ class QuoteTweetViewEmbed extends StatelessWidget {
   final Color? backgroundColor;
   final OnTapImage? onTapImage;
 
-  QuoteTweetViewEmbed(
+  const QuoteTweetViewEmbed(
     this.tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -31,7 +31,7 @@ class QuoteTweetViewEmbed extends StatelessWidget {
     this.onTapImage,
   }); //  TweetView(this.tweetVM);
 
-  QuoteTweetViewEmbed.fromTweet(
+  const QuoteTweetViewEmbed.fromTweet(
     this.tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -54,15 +54,13 @@ class QuoteTweetViewEmbed extends StatelessWidget {
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            border: new Border.all(
+            border: Border.all(
               width: 0.8,
               color: Colors.grey[400]!,
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -73,7 +71,6 @@ class QuoteTweetViewEmbed extends StatelessWidget {
                       ViewMode.quote,
                       userNameStyle: userNameStyle,
                       userScreenNameStyle: userScreenNameStyle,
-                      showDate: false,
                     ),
                     TweetText(
                       tweetVM,

@@ -23,16 +23,14 @@ class RetweetInformation extends StatelessWidget {
         },
         child: Padding(
           child: Row(
-            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Expanded(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Image.asset(
-                      "assets/tw__ic_retweet_light.png",
+                      'assets/tw__ic_retweet_light.png',
                       fit: BoxFit.fitWidth,
                       package: 'tweet_ui',
                       color: retweetInformationStyle!.color,
@@ -40,7 +38,7 @@ class RetweetInformation extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 6.0),
                       child: Text(
-                        "Retweeted by ${tweetVM.userName}",
+                        'Retweeted by ${tweetVM.userName}',
                         overflow: TextOverflow.fade,
                         style: retweetInformationStyle,
                         textAlign: TextAlign.start,

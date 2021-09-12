@@ -25,7 +25,6 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 200),
-      lowerBound: 0.0,
       upperBound: 0.1,
     )..addListener(() {
         setState(() {});
@@ -48,7 +47,6 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
                 widget.tweetVM!.getDisplayTweet(),
                 autoPlay: true,
                 enableFullscreen: false,
-                videoHighQuality: true,
               ),
               onWillPop: () {
                 return Future.value(true);
@@ -74,7 +72,7 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
   }
 
   Widget get _animatedButtonUI => Image.asset(
-        "assets/tw__ic_play_default.png",
+        'assets/tw__ic_play_default.png',
         fit: BoxFit.fitWidth,
         package: 'tweet_ui',
         height: 50,

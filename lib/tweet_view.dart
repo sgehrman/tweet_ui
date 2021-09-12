@@ -71,7 +71,7 @@ class TweetView extends StatelessWidget {
   /// If set to false better_player will load the lowest quality available.
   final bool? videoHighQuality;
 
-  TweetView(
+  const TweetView(
     this._tweetVM, {
     this.userNameStyle,
     this.userScreenNameStyle,
@@ -189,8 +189,7 @@ class TweetView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                 ),
-                (_tweetVM.quotedTweet != null)
-                    ? Padding(
+                if (_tweetVM.quotedTweet != null) Padding(
                         padding:
                             EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                         child: QuoteTweetView.fromTweet(
@@ -203,8 +202,7 @@ class TweetView extends StatelessWidget {
                           borderColor: quoteBorderColor,
                           onTapImage: onTapImage,
                         ),
-                      )
-                    : Container(),
+                      ) else Container(),
               ],
             ),
           ),

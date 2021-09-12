@@ -16,37 +16,37 @@ class TweetUiExample extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           OpenTweetPageButton(
-            title: "1 photo",
+            title: '1 photo',
             tweetPath: 'assets/tweet_examples/tweet_1_photo.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_1_photo.json',
           ),
           OpenTweetPageButton(
-            title: "2 photos",
+            title: '2 photos',
             tweetPath: 'assets/tweet_examples/tweet_2_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_2_photos.json',
           ),
           OpenTweetPageButton(
-            title: "3 photos",
+            title: '3 photos',
             tweetPath: 'assets/tweet_examples/tweet_3_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_3_photos.json',
           ),
           OpenTweetPageButton(
-            title: "4 photos",
+            title: '4 photos',
             tweetPath: 'assets/tweet_examples/tweet_4_photos.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_4_photos.json',
           ),
           OpenTweetPageButton(
-            title: "Video",
+            title: 'Video',
             tweetPath: 'assets/tweet_examples/tweet_video.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_video.json',
           ),
           OpenTweetPageButton(
-            title: "GIF",
+            title: 'GIF',
             tweetPath: 'assets/tweet_examples/tweet_gif.json',
             quoteTweetPath: 'assets/tweet_examples/tweet_quote_gif.json',
           ),
-          buildOpenEmbeddedTweetPageButton("Embedded", context),
-          buildOpenBugPageButton("Bug page", context),
+          buildOpenEmbeddedTweetPageButton('Embedded', context),
+          buildOpenBugPageButton('Bug page', context),
         ],
       ),
     );
