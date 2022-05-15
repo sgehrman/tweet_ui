@@ -13,7 +13,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "36b84505264517f94e5398eb2fa1bc4869145d2a"
+      resolved-ref: d33a9cec9d56f6afbadedd3671d02e3a8f74313b
       url: "https://github.com/sgehrman/betterplayer"
     source: git
     version: "0.0.82"
@@ -535,7 +535,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "5.4.1"
 sdks:
   dart: ">=2.17.0 <3.0.0"
   flutter: ">=2.12.0"
