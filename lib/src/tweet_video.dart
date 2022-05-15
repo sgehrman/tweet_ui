@@ -158,8 +158,8 @@ class _TweetVideoState extends State<TweetVideo>
                 final video =
                     widget.tweetVM.getDisplayTweet().videoUrls.values.last;
 
-                if (await canLaunch(video)) {
-                  await launch(video);
+                if (await canLaunchUrl(Uri.parse(video))) {
+                  await launchUrl(Uri.parse(video));
                 } else {
                   print('Could not launch $video');
                 }
